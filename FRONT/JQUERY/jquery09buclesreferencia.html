@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 09 (Bucles de referencia)</title>
+</head>
+
+<body>
+    <h1>Bucle each</h1>
+    <p>Párrafo 1</p>
+    <p>Párrafo 2</p>
+    <p>Párrafo 3</p>
+    <p>Párrafo 4</p>
+    <p>Párrafo 5</p>
+    <script src="js/jquery-3.7.1.js"></script>
+    <script>
+        $(function () {
+            $("p").on("click", function () {
+                let colores = ["blue", "red", "green", "yellow", "orange", "light-blue", "purple"];
+                $("p").each(function () {
+                    let index = parseInt(Math.random() * colores.length);
+                    $(this).css("color", colores[index]);
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 10 (Generar checkbox)</title>
+</head>
+
+<body>
+    <input type="range" id="rango" min="1" value="1" max="10">
+    <div id="contenedor"></div>
+    <h1 id="valor"></h1>
+    <script src="js/jquery-3.7.1.js"></script>
+    <script>
+        $(function () {
+            $("#rango").on("change", function () {
+                $("#contenedor, #valor").text("");
+                for (let i = 1; i <= $(this).val(); i++) {
+                    let num = getRandom(1, 20);
+                    let checkbox = $("<input>", {
+                        "type": "checkbox",
+                        "value": num
+                    }).on("change", function () {
+                        let h1 = $("#valor").text();
+                        if ($(this).is(":checked"))
+                            (h1 == "") ? $("#valor").text(num)
+                                : $("#valor").text(parseInt(h1) + num);
+                        else
+                            $("#valor").text(parseInt(h1) - num);
+
+                        // Segunda forma
+                        $("#valor").text("0");
+                        $("input[type='checkbox']:checked").each(function () {
+                            ($("#valor").text() == "") ? $("#valor").text($(this).val())
+                                : $("#valor").text(parseInt($("#valor").text()) + parseInt($(this).val()));
+                        });
+                    });
+                    $("#contenedor").append(checkbox).append($("<label>", {
+                        "text": num
+                    }));
+                    $("#cajauser").data("dni", "12345678X");
+                }
+            });
+        });
+        function getRandom(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+    </script>
+</body>
+
+</html>

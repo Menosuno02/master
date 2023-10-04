@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 11 (Elementos dinámicos contenedores)</title>
+    <style>
+        img {
+            width: 150px;
+            height: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="range" id="rango" min="1" value="1" max="10">
+    <div id="contenedor"></div>
+    <div id="imagenes"></div>
+    <h1 id="valor"></h1>
+    <script src="js/jquery-3.7.1.js"></script>
+    <script>
+        $(function () {
+            $("#rango").on("change", function () {
+                $("#contenedor").text("");
+                $("#imagenes").text("");
+                for (let i = 1; i < $("#rango").val(); i++) {
+                    let boton = $("<button>", {
+                        "text": "Imagen " + i
+                    })
+                        .on("click", function () {
+                            $("img").each(function () {
+                                if ($(this).data("idimag") == i)
+                                    $(this).attr("src", "img/venus.jpg");
+                            });
+
+                            //Segunda forma
+                            $("img:nth-child(" + i + ")").attr("src", "img/venus.jpg");
+                        });
+                    $("#contenedor").append(boton);
+                }
+                for (let i = 1; i < $("#rango").val(); i++) {
+                    let img = $("<img>", {
+                        "src": "img/marte.jpg"
+                    })
+                        .data("idimag", toString(i));
+                    $("#imagenes").append(img);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
