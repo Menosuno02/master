@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 04 (Comparar números)</title>
+
+    <!-- Nueva página con 3 inputs para pedir tres números.
+        Al pulsar un botón, mostrar mayor numero, menor e intermedio -->
+</head>
+
+<body>
+    <label>Número 1</label>
+    <input type="text" id="num1"><br>
+    <label>Número 2</label>
+    <input type="text" id="num2"><br>
+    <label>Número 3</label>
+    <input type="text" id="num3"><br>
+    <button>Calcular</button>
+    <p></p>
+
+    <script src="js/jquery-3.7.1.js"></script>
+    <script>
+        $().ready(function () {
+            $("button").on("click", function () {
+                //Primera forma
+                let num1 = parseInt($("#num1").val());
+                let num2 = parseInt($("#num2").val());
+                let num3 = parseInt($("#num3").val());
+                let c1 = 0;
+                let c2 = 0;
+                if (num1 > num2 || num1 > num3) {
+                    $("p").html("Mayor: " + num1);
+                    c1 = num2;
+                    c2 = num3;
+                }
+                if (num2 > num1 || num2 > num3) {
+                    $("p").html("Mayor: " + num2);
+                    c1 = num1;
+                    c2 = num3;
+                }
+                if (num3 > num1 || num3 > num2) {
+                    $("p").html("Mayor: " + num3);
+                    c1 = num1;
+                    c2 = num2;
+                }
+                (c2 > c1) ? $("p").html($("p").html() + "<br>Intermedio: " + c2 + "<br>Menor: " + c1)
+                    : $("p").html($("p").html() + "<br>Intermedio: " + c1 + "<br>Menor: " + c2);
+
+                // Segunda forma
+                let arr = [parseInt($("#num1").val()), parseInt($("#num2").val()), parseInt($("#num3").val())]
+                arr.sort((a, b) => { return b - a; });
+                $("p").html("Mayor: " + arr[0] + "<br>Intermedio: " + arr[1] + "<br>Menor: " + arr[2]);
+            });
+        });
+    </script>
+</body>
+
+</html>

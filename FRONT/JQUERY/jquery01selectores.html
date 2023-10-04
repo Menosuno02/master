@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>jQuery 01 (Selectores)</title>
+	<!-- Comentarios en todos los lenguajes: Ctrl + K + C -->
+	<!-- Descomentar: Ctrl + K  + U -->
+	<style>
+		#boton1 {
+			color: blue;
+		}
+
+		.rojo {
+			color: red;
+		}
+
+		.azul {
+			color: blue;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>Selectores</h1>
+	<button id="boton1">Botón 1</button>
+	<h1 class="rojo">Título</h1>
+	<button class="rojo">Botón 2</button>
+	<p>Párrafo</p>
+	<p>Párrafo 2</p>
+
+	<script src="js/jquery-3.7.1.js"></script>
+	<script>
+		$().ready(function () {
+			alert("Funciona");
+
+			// Ejemplos selectores
+			$("h1").hide();
+			$("#boton1").hide();
+
+			// Eventos
+			$(".rojo").on("click", function () {
+				console.log("Hola");
+				$("h1").show();
+				$(this).hide();
+			});
+		});
+	</script>
+</body>
+
+</html>

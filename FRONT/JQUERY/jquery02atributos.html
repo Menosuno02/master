@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>jQuery 02 (Atributos)</title>
+	<style>
+		img {
+			width: 200px;
+			height: 200px;
+		}
+	</style>
+</head>
+
+<body>
+	<input type="text" id="caja" />
+	<img src="img/marte.jpg">
+	<img src="img/marte.jpg">
+
+	<script src="./js/jquery-3.7.1.js"></script>
+	<script>
+		$().ready(function () {
+			//Atributos
+			let tipo = $("#caja").attr("type");
+			$("#caja").attr("type", "checkbox");
+
+			$("img").on("mouseover", function () {
+				$(this).attr("src", "img/venus.jpg");
+			});
+			$("img").on("mouseout", function () {
+				$(this).attr("src", "img/marte.jpg");
+			});
+
+			$("img").on("click", function () {
+				let img = $(this).attr("src");
+				console.log("Imagen => " + img);
+				if (img = "img/venus.jpg")
+					console.log("Es Venus");
+				else
+					console.log("Es Marte");
+			});
+		});
+	</script>
+</body>
+
+</html>
