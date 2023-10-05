@@ -15,16 +15,19 @@
 
 <body>
     <input type="range" id="rango" min="1" value="1" max="10">
-    <div id="contenedor"></div>
+    <div id="botones"></div>
     <div id="imagenes"></div>
     <h1 id="valor"></h1>
     <script src="js/jquery-3.7.1.js"></script>
     <script>
         $(function () {
             $("#rango").on("change", function () {
-                $("#contenedor").text("");
-                $("#imagenes").text("");
+                $("#botones, #imagenes").text("");
                 for (let i = 1; i < $("#rango").val(); i++) {
+                    let img = $("<img>", {
+                        "src": "img/marte.jpg"
+                    })
+                        .data("idimag", toString(i));
                     let boton = $("<button>", {
                         "text": "Imagen " + i
                     })
@@ -34,17 +37,13 @@
                                     $(this).attr("src", "img/venus.jpg");
                             });
 
-                            //Segunda forma
+                            // Segunda forma
                             $("img:nth-child(" + i + ")").attr("src", "img/venus.jpg");
+
+                            // Tercera forma poníendo id imagenindex a la imagen y buscando el selector
                         });
-                    $("#contenedor").append(boton);
-                }
-                for (let i = 1; i < $("#rango").val(); i++) {
-                    let img = $("<img>", {
-                        "src": "img/marte.jpg"
-                    })
-                        .data("idimag", toString(i));
                     $("#imagenes").append(img);
+                    $("#botones").append(boton);
                 }
             });
         });

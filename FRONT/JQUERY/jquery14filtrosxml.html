@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 14 (Filtros XML)</title>
+</head>
+
+<body>
+    <h1>Filtros XML Departamentos</h1>
+    <label>Introduzca ID</label>
+    <input type="text" id="cajaid">
+    <button id="botonbuscarid">Buscar departamentos</button>
+    <hr>
+    <label>Introduzca localidad</label>
+    <input type="text" id="cajaloc">
+    <button id="botonbuscarloc">Buscar localidades</button>
+    <hr>
+    <h1 style="color:red;" id="numdept"></h1>
+    <ul id="listadept"></ul>
+    <script src="js/jquery-3.7.1.js"></script>
+    <script>
+        $(function () {
+            $("#botonbuscarid").on("click", function () {
+                $.get("documents/departamentos.xml", function (data) {
+                    $("#listadept, #numdept").html("");
+                    console.log("Leyendo servicio");
+                    let html = "";
+                    let dept = $(data).find("DEPT[DEPT_NO=" + $("#cajaid").val() + "]").first();
+                    html += "<li>" + dept.find("DNOMBRE").text() + ", " + $(dept).find("LOC").text() + "</li>";
+                    $("#listadept").html(html);
+                });
+            });
+            $("#botonbuscarloc").on("click", function () {
+                $.get("documents/departamentos.xml", function (data) {
+                    console.log("Leyendo servicio");
+                    let html = "";
+                    let filtro = "LOC:contains(" + $("#cajaloc").val() + ")";
+
+                    $(data).find(filtro).each(function () {
+                        let dept = $(this).parent(); // filtramos localidades y vamos al nodo padre (el dept)
+                        html += "<li>" + dept.attr("DEPT_NO") + ", " + dept.find("DNOMBRE").text() + "</li>";
+                    });
+                    if ($(data).find(filtro).length == 0)
+                        $("#numdept").text("No existe ningún departamento en " + $("#cajaloc").val());
+                    else
+                        $("#numdept").text($(data).find(filtro).length + " departamento/s encontrados");
+
+                    $("#listadept").html(html);
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

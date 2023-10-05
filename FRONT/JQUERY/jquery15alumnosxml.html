@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 15 (Alumnos XML)</title>
+</head>
+
+<body>
+    <h1>Filtros XML Alumnos</h1>
+    <label>Introduzca nota mínima</label>
+    <input type="text" id="cajanota">
+    <button id="botonbuscar">Buscar alumnos</button>
+    <hr>
+    <h1 style="color:red;" id="numalum"></h1>
+    <ul id="listaalum"></ul>
+    <script src="js/jquery-3.7.1.js"></script>
+    <script>
+        $(function () {
+            $("#botonbuscar").on("click", function () {
+                $.get("documents/alumnos.xml", function (data) {
+                    $("#listaalum, #numalum").html("");
+                    console.log("Leyendo servicio");
+                    let html = "";
+                    let nota = $("#cajanota").val();
+                    let num = 0;
+                    $(data).find("alumno").each(function () {
+                        if (parseInt($(this).find("nota").text()) >= parseInt(nota)) {
+                            html += "<li>ID " + $(this).attr("idalumno") + ", " + $(this).find("nombre").text() + " "
+                                + $(this).find("apellidos").text() + " (" + $(this).find("nota").text() + ")</li>";
+                            num++;
+                        }
+                    });
+                    if (num == 0)
+                        $("#numalum").text("No existe ningún alumno con nota mínima de un " + nota);
+                    else
+                        $("#numalum").text(num + " alumno/s encontrados");
+                    $("#listaalum").html(html);
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
