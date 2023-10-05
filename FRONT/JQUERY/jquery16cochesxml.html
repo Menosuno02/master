@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 16 (Coches XML)</title>
+    <style>
+        img {
+            width: 300px;
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <select id="select"></select>
+    <button id="buscar">Buscar coche</button>
+    <table>
+        <thead>
+            <tr>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Imagen</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <script src="js/jquery-3.7.1.js"></script>
+    <script>
+        $(function () {
+            $.get("documents/coches.xml", function (data) {
+                $(data).find("coche").each(function () {
+                    let opt = $("<option>", {
+                        "text": $(this).find("marca").text() + " " + $(this).find("modelo").text(),
+                        "id": $(this).attr("idcoche")
+                    });
+                    $("#select").append(opt);
+                });
+            });
+            $("#buscar").on("click", function () {
+                $("table tbody").html("");
+                $.get("documents/coches.xml", function (data) {
+                    let idcoche = $("#select :selected").attr("id");
+                    let coche = $(data).find("coche[idcoche=" + idcoche + "]").first();
+                    let marca = $("<td>", {
+                        "text": coche.find("marca").text()
+                    });
+                    let modelo = $("<td>", {
+                        "text": coche.find("modelo").text()
+                    });
+                    let imag = $("<td>").append($("<img>", {
+                        "src": coche.find("imagen").text()
+                    }));
+                    let tr = $("<tr>").append(marca).append(modelo).append(imag)
+                    $("table tbody").append(tr);
+                });
+            });
+
+        });
+    </script>
+</body>
+
+</html>

@@ -8,12 +8,19 @@
 </head>
 
 <body>
-    <h1>Filtros XML Alumnos</h1>
     <label>Introduzca nota mínima</label>
     <input type="text" id="cajanota">
     <button id="botonbuscar">Buscar alumnos</button>
-    <hr>
-    <h1 style="color:red;" id="numalum"></h1>
+    <h2 id="numalum"></h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Nota</th>
+        </thead>
+        <tbody></tbody>
+    </table>
     <ul id="listaalum"></ul>
     <script src="js/jquery-3.7.1.js"></script>
     <script>
@@ -21,22 +28,19 @@
             $("#botonbuscar").on("click", function () {
                 $.get("documents/alumnos.xml", function (data) {
                     $("#listaalum, #numalum").html("");
-                    console.log("Leyendo servicio");
                     let html = "";
                     let nota = $("#cajanota").val();
                     let num = 0;
                     $(data).find("alumno").each(function () {
                         if (parseInt($(this).find("nota").text()) >= parseInt(nota)) {
-                            html += "<li>ID " + $(this).attr("idalumno") + ", " + $(this).find("nombre").text() + " "
-                                + $(this).find("apellidos").text() + " (" + $(this).find("nota").text() + ")</li>";
+                            html += "<tr><td>" + $(this).find("nombre").text() + "</td><td>"
+                                + $(this).find("apellidos").text() + "</td><td>" + $(this).find("nota").text() + "</td></tr>";
                             num++;
                         }
                     });
-                    if (num == 0)
-                        $("#numalum").text("No existe ningún alumno con nota mínima de un " + nota);
-                    else
-                        $("#numalum").text(num + " alumno/s encontrados");
-                    $("#listaalum").html(html);
+                    (num == 0) ? $("#numalum").text("No existe ningún alumno con nota mínima de un " + nota)
+                        : $("#numalum").text(num + " alumno/s encontrados");
+                    $("table tbody").html(html);
                 });
             });
         });
