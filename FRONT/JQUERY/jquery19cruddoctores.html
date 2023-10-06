@@ -24,11 +24,15 @@
     <button id="botonupdate">Modificar</button>
     <button id="botondelete">Borrar</button>
     <button id="boton_docid">Buscar doctor por ID</button>
-    <button id="boton_docespecialidad">Buscar doctor por especialidad</button>
+    <button id="boton_docespecialidad">Buscar doctor por especialidad</button><br><br>
+    <label>Incremento (en euros)</label><br>
+    <input type="text" id="cajaincremento"><br>
+    <button id="boton_incrementespec">Incrementar salario de toda una especialidad</button>
     <hr>
     <h3>Doctores</h3>
+    <button id="botonrecargar">Recargar tabla</button><br><br>
     <table id="tabledoc" border="1">
-        <thead>
+        <thead style="font-weight: bold;">
             <tr>
                 <td>Apellido</td>
                 <td>Especialidad</td>
@@ -40,23 +44,25 @@
         <tbody></tbody>
     </table>
     <hr>
-    <button id="boton_searchespecialidad">Cargar especialidades</button>
     <h3>Especialidades</h3>
-    <table id="tableespec">
-        <thead>
+    <button id="boton_searchespecialidad">Cargar especialidades</button><br><br>
+    <table id="tableespec" border="1">
+        <thead style="font-weight: bold;">
             <tr>
                 <td>Nombre</td>
             </tr>
         </thead>
         <tbody></tbody>
     </table>
-    <button>Buscar </button>
     <script src="js/jquery-3.7.1.js"></script>
     <script>
         const urlDoctores = "https://apicruddoctoresxml.azurewebsites.net/";
 
         $(function () {
             loadDoctores();
+            $("#botonrecargar").on("click", function () {
+                loadDoctores();
+            });
             $("#botoninsert").on("click", function () {
                 insertDoc();
             });
@@ -72,6 +78,9 @@
             $("#boton_docespecialidad").on("click", function () {
                 searchDocEspecialidad();
             });
+            $("#boton_incrementespec").on("click", function () {
+                incrementEspecialidad();
+            });
             $("#boton_searchespecialidad").on("click", function () {
                 loadEspecialidades();
             });
@@ -83,11 +92,11 @@
                 $("#tabledoc tbody").html("");
                 $(data).find("Doctor").each(function () {
                     let tr = $("<tr>")
-                        .append($("<td>"), { "text": $(this).find("Apellido").text() })
-                        .append($("<td>"), { "text": $(this).find("Especialidad").text() })
-                        .append($("<td>"), { "text": $(this).find("IdDoctor").text() })
-                        .append($("<td>"), { "text": $(this).find("IdHospital").text() })
-                        .append($("<td>"), { "text": $(this).find("Salario").text() });
+                        .append($("<td>", { "text": $(this).find("Apellido").text() }))
+                        .append($("<td>", { "text": $(this).find("Especialidad").text() }))
+                        .append($("<td>", { "text": $(this).find("IdDoctor").text() }))
+                        .append($("<td>", { "text": $(this).find("IdHospital").text() }))
+                        .append($("<td>", { "text": $(this).find("Salario").text() }));
                     $("#tabledoc tbody").append(tr);
                 });
             });
@@ -97,11 +106,11 @@
             return "<Doctor><Apellido>" + ape + "</Apellido><Especialidad>"
                 + especialidad + "</Especialidad><IdDoctor>" + iddoc
                 + "</IdDoctor><IdHospital>" + idhosp + "</IdHospital><Salario>"
-            salario + "</Salario></Doctor>";
+                + salario + "</Salario></Doctor>";
         }
 
         function insertDoc() {
-            let ape = $("#cajaapelldios").val();
+            let ape = $("#cajaapellidos").val();
             let especialidad = $("#cajaespecialidad").val();
             let iddoc = $("#cajaiddoc").val();
             let idhosp = $("#cajaidhosp").val();
@@ -117,16 +126,16 @@
                     console.log("Éxito insertando");
                     loadDoctores();
                 }
-            })
+            });
         }
 
         function updateDoc() {
-            let ape = $("#cajaapelldios").val();
+            let ape = $("#cajaapellidos").val();
             let especialidad = $("#cajaespecialidad").val();
             let iddoc = $("#cajaiddoc").val();
             let idhosp = $("#cajaidhosp").val();
             let salario = $("#cajasalario").val();
-            let dataXML = getDocXML(ape, especialidad, iddoc.idhosp, salario);
+            let dataXML = getDocXML(ape, especialidad, iddoc, idhosp, salario);
             let request = "api/Doctores";
             $.ajax({
                 url: urlDoctores + request,
@@ -147,9 +156,9 @@
                 type: "DELETE",
                 success: function () {
                     console.log("Éxito borrando");
-                    loadDept();
+                    loadDoctores();
                 }
-            })
+            });
         }
 
         function searchDocID() {
@@ -158,18 +167,18 @@
                 $("#tabledoc tbody").html("");
                 let doc = $(data).find("Doctor").first();
                 let tr = $("<tr>")
-                    .append($("<td>"), { "text": doc.find("Apellido").text() })
-                    .append($("<td>"), { "text": doc.find("Especialidad").text() })
-                    .append($("<td>"), { "text": doc.find("IdDoctor").text() })
-                    .append($("<td>"), { "text": doc.find("IdHospital").text() })
-                    .append($("<td>"), { "text": doc.find("Salario").text() });
+                    .append($("<td>", { "text": doc.find("Apellido").text() }))
+                    .append($("<td>", { "text": doc.find("Especialidad").text() }))
+                    .append($("<td>", { "text": doc.find("IdDoctor").text() }))
+                    .append($("<td>", { "text": doc.find("IdHospital").text() }))
+                    .append($("<td>", { "text": doc.find("Salario").text() }));
                 $("#tabledoc tbody").append(tr);
             });
         }
 
         function searchDocEspecialidad() {
             let request = "api/Doctores/DoctoresEspecialidad/" + $("#cajaespecialidad").val();
-            $.get(urlDoctores + request, function () {
+            $.get(urlDoctores + request, function (data) {
                 $("#tabledoc tbody").html("");
                 $(data).find("Doctor").each(function () {
                     let tr = $("<tr>")
@@ -183,13 +192,27 @@
             });
         }
 
+        function incrementEspecialidad() {
+            let request = "api/Doctores/UpdateSalarioDoctores/"
+                + $("#cajaespecialidad").val() + "/" + $("#cajaincremento").val();
+            $.ajax({
+                url: urlDoctores + request,
+                type: "PUT",
+                contentType: "text/xml",
+                success: function () {
+                    console.log("Éxito subiendo sueldos");
+                    loadDoctores();
+                }
+            });
+        }
+
         function loadEspecialidades() {
             let request = "api/Doctores/Especialidades";
             $.get(urlDoctores + request, function (data) {
                 $("#tableespec tbody").html("");
                 $(data).find("string").each(function () {
                     let tr = $("<tr>")
-                        .append($("<td>", { "text": $(this).text }));
+                        .append($("<td>", { "text": $(this).text() }));
                     $("#tableespec tbody").append(tr);
                 });
             });

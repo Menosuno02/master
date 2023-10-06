@@ -51,7 +51,8 @@
             $.get(urlDept + request, function (data) {
                 $("table tbody").html("");
                 $(data).find("Departamento").each(function () {
-                    let tr = $("<tr>").append($("<td>", { "text": $(this).find("IdDepartamento").text() }))
+                    let tr = $("<tr>")
+                        .append($("<td>", { "text": $(this).find("IdDepartamento").text() }))
                         .append($("<td>", { "text": $(this).find("Nombre").text() }))
                         .append($("<td>", { "text": $(this).find("Localidad").text() }));
                     $("table tbody").append(tr);
