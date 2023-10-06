@@ -19,8 +19,7 @@
     <table>
         <thead>
             <tr>
-                <th>Marca</th>
-                <th>Modelo</th>
+                <th>Coche</th>
                 <th>Imagen</th>
             </tr>
         </thead>
@@ -32,8 +31,8 @@
             $.get("documents/coches.xml", function (data) {
                 $(data).find("coche").each(function () {
                     let opt = $("<option>", {
-                        "text": $(this).find("marca").text() + " " + $(this).find("modelo").text(),
-                        "id": $(this).attr("idcoche")
+                        "text": $(this).find("marca").text(),
+                        "value": $(this).attr("idcoche")
                     });
                     $("#select").append(opt);
                 });
@@ -41,19 +40,15 @@
             $("#buscar").on("click", function () {
                 $("table tbody").html("");
                 $.get("documents/coches.xml", function (data) {
-                    let idcoche = $("#select :selected").attr("id");
+                    let idcoche = $("#select :selected").val(); // :selected no hace falta
                     let coche = $(data).find("coche[idcoche=" + idcoche + "]").first();
-                    let marca = $("<td>", {
-                        "text": coche.find("marca").text()
+                    let tdcoche = $("<td>", {
+                        "text": coche.find("marca").text() + " " + coche.find("modelo").text() // también vale append al td
                     });
-                    let modelo = $("<td>", {
-                        "text": coche.find("modelo").text()
-                    });
-                    let imag = $("<td>").append($("<img>", {
+                    let tdimag = $("<td>").append($("<img>", {
                         "src": coche.find("imagen").text()
                     }));
-                    let tr = $("<tr>").append(marca).append(modelo).append(imag)
-                    $("table tbody").append(tr);
+                    $("table tbody").append($("<tr>").append(tdcoche).append(tdimag));
                 });
             });
 

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 17 (Clientes XML)</title>
+</head>
+
+<body>
+    <div id="contenedorbotones"></div>
+    <hr>
+    <div id="contenedorcliente"></div>
+    <script src="js/jquery-3.7.1.js"></script>
+    <script>
+        $(function () {
+            $.get("documents/clientes.xml", function (data) {
+                $(data).find("CLIENTE").each(function () {
+                    let cliente = $(this);
+                    let button = $("<button>", {
+                        "text": cliente.find("NOMBRE").text(),
+                    })
+                        .on("click", function () {
+                            $("#contenedorcliente").html("")
+                                .append($("<h1>", { "text": cliente.find("NOMBRE").text() }))
+                                .append($("<p>", { "text": "Dirección: " + cliente.find("DIRECCION").text() }))
+                                .append($("<p>", { "text": "Correo electrónico: " + cliente.find("EMAIL").text() }))
+                                .append($("<p>", { "text": "Código postal: " + cliente.find("CODIGOPOSTAL").text() }))
+                                .append($("<p>", { "text": "Página web: " + cliente.find("PAGINAWEB").text() }))
+                                .append($("<img>", { "src": cliente.find("IMAGENCLIENTE").text() }));
+                        });
+                    $("#contenedorbotones").append(button);
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

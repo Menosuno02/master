@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 18 (CRUD Dept)</title>
+</head>
+
+<body>
+    <h1>CRUD DEPARTAMENTOS XML</h1>
+    <label>Num Dept</label>
+    <input type="text" id="cajanum"><br>
+    <label>Nom Dept</label>
+    <input type="text" id="cajanom"><br>
+    <label>Localidad Dept</label>
+    <input type="text" id="cajaloc"><br>
+    <hr>
+    <button id="botoninsert">Insertar</button>
+    <button id="botonupdate">Modificar</button>
+    <button id="botondelete">Borrar</button>
+    <table id="tabladept" border="1">
+        <thead>
+            <tr>
+                <th>Número</th>
+                <th>Nombre</th>
+                <th>Localidad</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <script src="js/jquery-3.7.1.js"></script>
+    <script>
+        const urlDept = "https://apicruddepartamentosxml.azurewebsites.net/";
+
+        $(function () {
+            loadDept();
+            $("#botoninsert").on("click", function () {
+                insertDept();
+            });
+        });
+
+        function loadDept() {
+            let request = "api/Departamentos"
+            $.get(urlDept + request, function (data) {
+                $("table tbody").html("");
+                $(data).find("Departamento").each(function () {
+                    let tr = $("<tr>").append($("<td>", { "text": $(this).find("IdDepartamento").text() }))
+                        .append($("<td>", { "text": $(this).find("Nombre").text() }))
+                        .append($("<td>", { "text": $(this).find("Localidad").text() }));
+                    $("table tbody").append(tr);
+                });
+            });
+        }
+
+        function insertDept() {
+            let num = $("#cajanum").val();
+            let nom = $("#cajanom").val();
+            let loc = $("#cajanloc").val();
+            let dataXML = "<Departamento><IdDepartamento>33</IdDepartamento>"
+                + "<Nombre>Lonsu</Nombre><Localidad>Asturias</Localidad></Departamento>";
+            let request = "api/Departamentos";
+            $.ajax({
+                url: urlDept + request,
+                type: "POST",
+                contentType: "text/xml",
+                success: function () {
+                    console.log("Éxito");
+                    loadDept();
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
