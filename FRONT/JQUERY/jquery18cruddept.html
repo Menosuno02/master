@@ -9,11 +9,11 @@
 
 <body>
     <h1>CRUD DEPARTAMENTOS XML</h1>
-    <label>Num Dept</label>
+    <label>Num Dept</label><br>
     <input type="text" id="cajanum"><br>
-    <label>Nom Dept</label>
+    <label>Nom Dept</label><br>
     <input type="text" id="cajanom"><br>
-    <label>Localidad Dept</label>
+    <label>Localidad Dept</label><br>
     <input type="text" id="cajaloc"><br>
     <hr>
     <button id="botoninsert">Insertar</button>
@@ -38,10 +38,16 @@
             $("#botoninsert").on("click", function () {
                 insertDept();
             });
+            $("#botonupdate").on("click", function () {
+                updateDept();
+            });
+            $("#botondelete").on("click", function () {
+                deleteDept();
+            });
         });
 
         function loadDept() {
-            let request = "api/Departamentos"
+            let request = "api/Departamentos";
             $.get(urlDept + request, function (data) {
                 $("table tbody").html("");
                 $(data).find("Departamento").each(function () {
@@ -56,19 +62,55 @@
         function insertDept() {
             let num = $("#cajanum").val();
             let nom = $("#cajanom").val();
-            let loc = $("#cajanloc").val();
-            let dataXML = "<Departamento><IdDepartamento>33</IdDepartamento>"
-                + "<Nombre>Lonsu</Nombre><Localidad>Asturias</Localidad></Departamento>";
+            let loc = $("#cajaloc").val();
+            let dataXML = getDeptXML(num, nom, loc);
             let request = "api/Departamentos";
             $.ajax({
                 url: urlDept + request,
-                type: "POST",
-                contentType: "text/xml",
+                type: "POST", // tipo del request
+                contentType: "text/xml", // formato de lo que se envía
+                data: dataXML, // lo que se envía
                 success: function () {
-                    console.log("Éxito");
+                    console.log("Éxito insertando");
                     loadDept();
                 }
             });
+        }
+
+        function getDeptXML(num, nom, loc) {
+            let dataXML = "<Departamento><IdDepartamento>" + num + "</IdDepartamento>"
+                + "<Nombre>" + nom + "</Nombre><Localidad>" + loc + "</Localidad></Departamento>";
+            return dataXML;
+        }
+
+        function updateDept() {
+            let num = $("#cajanum").val();
+            let nom = $("#cajanom").val();
+            let loc = $("#cajaloc").val();
+            let dataXML = getDeptXML(num, nom, loc);
+            let request = "api/Departamentos";
+            $.ajax({
+                url: urlDept + request,
+                type: "PUT",
+                contentType: "text/xml",
+                data: dataXML,
+                success: function () {
+                    console.log("Éxito modificando");
+                    loadDept();
+                }
+            })
+        }
+
+        function deleteDept() {
+            let request = "api/Departamentos/" + $("#cajanum").val();
+            $.ajax({
+                url: urlDept + request,
+                type: "DELETE",
+                success: function () {
+                    console.log("Éxito eliminando");
+                    loadDept();
+                }
+            })
         }
     </script>
 </body>
