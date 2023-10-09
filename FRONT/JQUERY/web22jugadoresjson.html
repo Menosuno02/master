@@ -28,9 +28,9 @@
                     success: function (data) {
                         let jugador = data.jugadores[index];
                         $("#datosjugador")
-                            .append($("<h1>").append(jugador.nombre + " (" + jugador.numero + ")"))
-                            .append($("<h3>").append("Posición: " + jugador.posicion))
-                            .append($("<h3>").append("Edad: " + jugador.edad))
+                            .append($("<h1>").text(jugador.nombre + " (" + jugador.numero + ")"))
+                            .append($("<h3>").text("Posición: " + jugador.posicion))
+                            .append($("<h3>").text("Edad: " + jugador.edad))
                             .append($("<img>").attr("src", jugador.imagen));
                     }
                 });

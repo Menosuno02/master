@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 23 (CRUD Departamentos)</title>
+</head>
+
+<body>
+    <ul>
+        <li id="10">DISNEYLAND <a href="#">Empleados</a></li>
+        <li id="20">TERRA MITCA <a href="#">Empleados</a></li>
+        <li id="30">PORT AVENTURA <a href="#">Empleados</a></li>
+        <li id="40">PARQUE WARNER <a href="#">Empleados</a></li>
+    </ul>
+    <table id="tablaemple" border="1">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Apellido</td>
+                <td>Oficio</td>
+                <td>Salario</td>
+                <td>Departamento</td>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <h1>CRUD Dept JSON</h1>
+    <label>Número</label>
+    <input type="text" id="cajanum"><br>
+    <label>Nombre</label>
+    <input type="text" id="cajanom"><br>
+    <label>Localidad</label>
+    <input type="text" id="cajaloc"><br>
+    <button id="botoninsert">Insertar</button>
+    <button id="botonupdate">Modificar</button>
+    <button id="botondelete">Eliminar</button>
+    <hr>
+    <table id="tabladept" border="1">
+        <thead>
+            <tr>
+                <td>Número</td>
+                <td>Nombre</td>
+                <td>Localidad</td>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script src="js/jquery-3.7.1.js"></script>
+    <script>
+        const urlDept = "https://apicruddepartamentoscore.azurewebsites.net/";
+        const urlEmple = "https://apiempleadosspgs.azurewebsites.net/";
+
+        $(function () {
+            loadDept();
+
+            $("#botoninsert").on("click", function () {
+                let dept = new Object();
+                dept.numero = parseInt($("#cajanum").val());
+                dept.nombre = $("#cajanom").val();
+                dept.localidad = $("#cajaloc").val();
+                let dataJSON = JSON.stringify(dept);
+                let request = "api/Departamentos";
+                $.ajax({
+                    url: urlDept + request,
+                    type: "POST",
+                    contentType: "application/json",
+                    data: dataJSON,
+                    success: function () {
+                        console.log("Éxito añadiendo");
+                        loadDept();
+                    },
+
+
+                });
+            });
+
+            $("#botonupdate").on("click", function () {
+                let dataJSON = getJsonDept(parseInt($("#cajanum").val()),
+                    $("#cajanom").val(), $("#cajaloc").val());
+                let request = "api/Departamentos";
+                $.ajax({
+                    url: urlDept + request,
+                    type: "PUT",
+                    contentType: "application/json",
+                    data: dataJSON,
+                    success: function () {
+                        loadDept();
+                    }
+                })
+            });
+
+            $("#botondelete").on("click", function () {
+                let request = "api/Departamentos/" + parseInt($("#cajanum").val());
+                $.ajax({
+                    url: urlDept + request,
+                    type: "DELETE",
+                    success: function () {
+                        loadDept();
+                    }
+                })
+            });
+
+            $("li a").on("click", function () {
+                let request = "api/Empleados/EmpleadosDepartamento/" + $(this).parent().attr("id");
+                $.getJSON(urlEmple + request, function (data) {
+                    let html = "";
+                    $.each(data, function (index, emple) {
+                        html += "<tr><td>" + emple.idEmpleado + "</td><td>"
+                            + emple.apellido + "</td><td>" + emple.oficio
+                            + "</td><td>" + emple.salario + "</td><td>"
+                            + emple.departamento + "</td></tr>";
+                    });
+                    $("#tablaemple tbody").html(html);
+                });
+            });
+        });
+
+        function getJsonDept(num, nom, loc) {
+            let dept = new Object();
+            dept.numero = num;
+            dept.nombre = nom;
+            dept.localidad = loc;
+            return JSON.stringify(dept);
+        }
+
+        function loadDept() {
+            let request = "api/Departamentos";
+            $.getJSON(urlDept + request, function (data) {
+                let html = "";
+                $.each(data, function (index, dept) {
+                    html += "<tr><td>" + dept.numero + "</td><td>" + dept.nombre
+                        + "</td><td>" + dept.localidad + "</td></tr>";
+                });
+                $("#tabladept tbody").html(html);
+            });
+        }
+    </script>
+</body>
+
+</html>
