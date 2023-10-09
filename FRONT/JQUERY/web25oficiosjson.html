@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 25 (Oficios JSON)</title>
+</head>
+
+<body>
+    <h1>Oficios de los empleados</h1>
+    <select id="selectoficios"></select>
+    <table id="tablaemple" border="1">
+        <thead style="font-weight: bold;">
+            <tr>
+                <td>ID</td>
+                <td>Apellido</td>
+                <td>Oficio</td>
+                <td>Salario</td>
+                <td>Departamento</td>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <script src="js/jquery-3.7.1.js"></script>
+    <script>
+        const urlEmple = "https://apiempleadosspgs.azurewebsites.net/";
+
+        $(function () {
+            $("#tablaemple tbody").html("");
+            let request = "api/Empleados";
+            let oficios = [];
+            $.getJSON(urlEmple + request, function (data) {
+                $.each(data, function (index, emple) {
+                    if (!oficios.includes(emple.oficio)) {
+                        oficios.push(emple.oficio);
+                        $("#selectoficios").append($("<option>", { "text": emple.oficio, "value": emple.oficio }))
+                    };
+                })
+            });
+            $("#selectoficios").on("change", function () {
+                $("#tablaemple tbody").html("");
+                request = "api/Empleados/EmpleadosOficio/" + $(this).val();
+                $.getJSON(urlEmple + request, function (data) {
+                    let html = "";
+                    $.each(data, function (index, emple) {
+                        html += "<tr><td>" + emple.idEmpleado + "</td><td>"
+                            + emple.apellido + "</td><td>" + emple.oficio + "</td><td>"
+                            + emple.salario + "</td><td>" + emple.departamento + "</td></tr>";
+                    });
+                    $("#tablaemple tbody").html(html);
+                });
+            });
+        })
+    </script>
+</body>
+
+</html>

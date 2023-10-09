@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 23 (CRUD Departamentos)</title>
+</head>
+
+<body>
+    <ul id="listdept">
+        <li id="10">DISNEYLAND <a href="#">Empleados</a></li>
+        <li id="20">TERRA MITCA <a href="#">Empleados</a></li>
+        <li id="30">PORT AVENTURA <a href="#">Empleados</a></li>
+        <li id="40">PARQUE WARNER <a href="#">Empleados</a></li>
+    </ul>
+    <table id="tablaemple" border="1">
+        <thead style="font-weight: bold;">
+            <tr>
+                <td>ID</td>
+                <td>Apellido</td>
+                <td>Oficio</td>
+                <td>Salario</td>
+                <td>Departamento</td>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script src="js/jquery-3.7.1.js"></script>
+    <script>
+        const urlDept = "https://apicruddepartamentoscore.azurewebsites.net/";
+        const urlEmple = "https://apiempleadosspgs.azurewebsites.net/";
+
+        $(function () {
+            let request = "api/Departamentos";
+            $.getJSON(urlDept + request, function (data) {
+                let html = "";
+                $.each(data, function (index, dept) {
+                    html += "<li id='" + dept.numero + "'>" + dept.nombre
+                        + " <a href='#'>Empleados</a></li>";
+                });
+                $("#listdept").html(html);
+                $("#listdept a").on("click", function () {
+                    let request2 = "api/Empleados/EmpleadosDepartamento/" + $(this).parent().attr("id");
+                    $.getJSON(urlEmple + request2, function (data) {
+                        let html = "";
+                        $.each(data, function (index, emple) {
+                            html += "<tr><td>" + emple.idEmpleado + "</td><td>"
+                                + emple.apellido + "</td><td>" + emple.oficio
+                                + "</td><td>" + emple.salario + "</td><td>"
+                                + emple.departamento + "</td></tr>";
+                        });
+                        $("#tablaemple tbody").html(html);
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
