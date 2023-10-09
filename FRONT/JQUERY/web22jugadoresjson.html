@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 22 (Jugadores JSON)</title>
+</head>
+
+<body>
+    <h1>Jugadores JSON</h1>
+    <select id="selectjugadores"></select>
+    <div id="datosjugador"></div>
+    <script src="js/jquery-3.7.1.js"></script>
+    <script>
+        $(function () {
+            $.getJSON("documents/jugadores.json", function (data) {
+                $.each(data.jugadores, function (index, jugador) {
+                    $("#selectjugadores").append($("<option>", { "text": jugador.nombre, "value": index }));
+                });
+            });
+            $("#selectjugadores").on("change", function () {
+                let index = $(this).prop("selectedIndex"); // .val(), añadiendo "value": index al añadir los options al select
+                $("#datosjugador").html("");
+                $.ajax({
+                    url: "documents/jugadores.json",
+                    type: "GET",
+                    success: function (data) {
+                        let jugador = data.jugadores[index];
+                        $("#datosjugador")
+                            .append($("<h1>").append(jugador.nombre + " (" + jugador.numero + ")"))
+                            .append($("<h3>").append("Posición: " + jugador.posicion))
+                            .append($("<h3>").append("Edad: " + jugador.edad))
+                            .append($("<img>").attr("src", jugador.imagen));
+                    }
+                });
+                /*
+                $.getJSON("documents/jugadores.json", function (data) {
+                    $.each(data.jugadores, function (index, jugador) {
+                        if (index == opcion) {
+                            $("#datosjugador")
+                                .append($("<h1>").append(jugador.nombre + " (" + jugador.numero + ")"))
+                                .append($("<h3>").append("Posición: " + jugador.posicion))
+                                .append($("<h3>").append("Edad: " + jugador.edad))
+                                .append($("<img>").attr("src", jugador.imagen));
+                        }
+                    });
+                });
+                */
+            });
+        });
+    </script>
+</body>
+
+</html>

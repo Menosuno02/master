@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 20 (Documentos JSON)</title>
+</head>
+
+<body>
+    <h1>Lectura documento JSON simple</h1>
+    <button id="botonleer">Leer JSON simple</button>
+    <ul id="listtareas"></ul>
+    <script src="js/jquery-3.7.1.js"></script>
+    <script>
+        $(function () {
+            $("#botonleer").on("click", function () {
+                $.getJSON("documents/tareas.json", function (data) {
+                    console.log("Leyendo JSON");
+                    var html = "";
+                    $.each(data, function (key, value) {
+                        html += "<li>Key: " + key + ", Value: " + value + "</li>";
+                        // html += $("<li>").append("Key: " + key + ", Value: " + value).html()
+                    });
+                    $("#listtareas").html(html);
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
