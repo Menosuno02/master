@@ -4,16 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>jQuery 25 (Oficios JSON)</title>
+    <title>jQuery 29 (Oficios JSON)</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
 </head>
 
 <body>
-    <h1 class="">Oficios de los empleados</h1>
-    <select id="selectoficios"></select><br><br>
-    <label>Incremento salarial</label><br>
-    <input type="text" id="cajaincremento">
-    <button id="botonincrementar">Incrementar salarios</button><br><br>
-    <table id="tablaemple" border="1">
+    <h1 class="text-danger">Oficios de los empleados</h1>
+    <select id="selectoficios" class="form-select"></select><br><br>
+    <label class="bg-warning">Incremento salarial</label><br>
+    <input type="text" id="cajaincremento" class="form-control">
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Incrementar
+        salarios</button><br><br>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Subida de salarios</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ¿Quiere continuar con el incremento del salario de todos los empleados del oficio seleccionado?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" id="botonincrementar" data-bs-dismiss="modal"
+                        class="btn btn-primary">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <table id="tablaemple" class="table table-dark" border="1">
         <thead style="font-weight: bold;">
             <tr>
                 <td>ID</td>
@@ -26,6 +46,7 @@
         <tbody></tbody>
     </table>
     <script src="js/jquery-3.7.1.js"></script>
+    <script src="js/bootstrap.bundle.js"></script>
     <script>
         const urlEmple = "https://apiempleadosaction.azurewebsites.net/";
         // https://apiempleadosspgs.azurewebsites.net/
