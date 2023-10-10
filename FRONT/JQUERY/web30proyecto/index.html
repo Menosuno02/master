@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página principal</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md bg-dark" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">CRUD Hospitales</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="index.html">Página principal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="insert.html">Insertar</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <h1 class="pt-3 pb-4">Hospitales</h1>
+        <table class="table table-sm">
+            <thead class="fw-bold">
+                <tr>
+                    <td>Número</td>
+                    <td>Nombre</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar hospital</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Va a eliminar este hospital. ¿Está seguro?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                        id="botonacceptdelete">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery-3.7.1.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script>
+        const urlHosp = "https://apicrudhospital.azurewebsites.net/";
+        let idEliminar = -1;
+
+        $(function () {
+            loadHosp();
+
+            $("#botonacceptdelete").on("click", function () {
+                let request = "webresources/hospitales/delete/" + idEliminar;
+                $.ajax({
+                    url: urlHosp + request,
+                    type: "DELETE",
+                    success: function () {
+                        console.log("Éxito eliminando");
+                        loadHosp();
+                    }
+                });
+            });
+
+            function loadHosp() {
+                let request = "webresources/hospitales";
+                $.getJSON(urlHosp + request, function (data) {
+                    $("table tbody").html("");
+                    $.each(data, function (index, hospital) {
+                        let botones = $("<td>", { "class": "btn-group" })
+                            .append($("<a>", {
+                                "href": "details.html?id=" + hospital.idhospital,
+                                "text": "Detalles",
+                                "class": "btn btn-outline-success"
+                            }))
+                            .append($("<a>", {
+                                "href": "update.html?id=" + hospital.idhospital, "text": "Modificar",
+                                "class": "btn btn-outline-primary"
+                            }))
+                            .append($("<button>", {
+                                "text": "Eliminar",
+                                "class": "btn btn-outline-danger botondelete",
+                                "id": hospital.idhospital,
+                                "data-bs-toggle": "modal",
+                                "data-bs-target": "#exampleModal"
+                            }));
+                        let tr = $("<tr>")
+                            .append($("<td>", { "text": hospital.idhospital, }))
+                            .append($("<td>", { "text": hospital.nombre, }))
+                            .append($("<td>").append(botones));
+                        $("table tbody").append(tr);
+                    });
+
+                    $(".botondelete").on("click", function () {
+                        console.log(idEliminar);
+                        idEliminar = $(this).attr("id");
+                        console.log(idEliminar);
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
