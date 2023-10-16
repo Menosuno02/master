@@ -5,8 +5,8 @@ import reportWebVitals from './reportWebVitals';
 
 import SumarNumeros from "./components/SumarNumeros/SumarNumeros.js";
 import SaludoPadre from './components/SaludoPadre';
-
 import PadreMatematicas from './components/PadreMatematicas';
+import Contador from './components/Contador';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -19,6 +19,7 @@ root.render(
     */}
 
     <PadreMatematicas />
+    <Contador />
   </React.StrictMode>
 );
 
