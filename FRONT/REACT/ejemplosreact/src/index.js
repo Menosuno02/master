@@ -1,24 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 
-import Saludo from './components/Saludo';
-import Metodos from './components/Metodos';
-import DobleNumero from './components/DobleNumero';
+import SumarNumeros from "./components/SumarNumeros.js"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/*
-    <Saludo nombre='Alejandro' edad="19" />
-    <Saludo nombre='Gonzalo' edad="41" />
-
-    <Metodos />
-    */}
-
-    <DobleNumero />
+    <SumarNumeros />
   </React.StrictMode>
 );
 
