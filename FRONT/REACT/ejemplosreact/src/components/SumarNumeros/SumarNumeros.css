@@ -3,3 +3,7 @@
     background-color: purple;
     text-align: center;
 }
+
+.ImageClass {
+    border-radius: 15px;
+}
