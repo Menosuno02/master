@@ -1,9 +1,12 @@
 import "./SumarNumeros.css"
 import imagen from "../../assets/images/marte.jpg"
 
-function SumarNumeros() {
+function SumarNumeros(props) {
     const sumarNum = (num1, num2) => {
+        let n1 = parseInt(props.numero1);
+        let n2 = parseInt(props.numero2);
         console.log(num1 + " + " + num2 + " = " + (num1 + num2));
+        console.log("Suma de las props: " + (n1 + n2));
     }
 
     let imagenSize = {
