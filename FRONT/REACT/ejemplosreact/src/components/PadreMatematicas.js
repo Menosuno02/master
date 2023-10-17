@@ -10,6 +10,7 @@ function PadreMatematicas() {
             <h1>Ejemplo comunicación entre componentes</h1>
             <Matematicas numero="7" metodoPadre={tripleNumero} />
             <Matematicas numero="9" metodoPadre={tripleNumero} />
+            <hr />
         </div>
     );
 }

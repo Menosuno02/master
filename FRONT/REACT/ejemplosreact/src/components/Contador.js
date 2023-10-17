@@ -11,7 +11,6 @@ function Contador() {
     return (
         <div>
             <h1>Ejemplo useState (variables reactivas)</h1>
-            <hr></hr>
             <h2 style={{ color: "red" }}>Contador: {numero}</h2>
             <button onClick={() => sumarNum()}>Sumar</button>
             <button onClick={() => {
@@ -19,6 +18,7 @@ function Contador() {
             }}> {/* Función anónima, sin const */}
                 Restar
             </button>
+            <hr />
         </div>
     );
 }
