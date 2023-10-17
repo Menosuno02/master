@@ -22,6 +22,7 @@ class DibujosComplejosReact extends Component {
                     })
                 }
                 <button onClick={() => this.generarNombre()}>Generar nuevo nombre</button>
+                <hr />
             </div>
         );
     }
