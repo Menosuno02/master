@@ -4,20 +4,20 @@ import HijoNumero from "./HijoNumero";
 class PadreNumeros extends Component {
     state = {
         suma: 0,
-        numeros: [parseInt(Math.random() * 100 + 1)]
+        numeros: [parseInt(Math.random() * 100) + 1]
     }
 
     anyadirNum = () => {
-        this.state.numeros.push(parseInt(Math.random() * 100 + 1));
+        this.state.numeros.push(parseInt(Math.random() * 100) + 1);
         this.setState({
             numeros: this.state.numeros
-        })
+        });
     }
 
     sumarNum = (num) => {
         this.setState({
             suma: this.state.suma + num
-        })
+        });
     }
 
     render() {
@@ -30,6 +30,7 @@ class PadreNumeros extends Component {
                         return (<HijoNumero numero={num} key={index} sumarNum={this.sumarNum} />)
                     })
                 }
+                <hr />
             </div>
         );
     }

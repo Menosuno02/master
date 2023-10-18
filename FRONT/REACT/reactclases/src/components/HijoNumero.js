@@ -2,7 +2,7 @@ import { Component } from "react";
 
 class HijoNumero extends Component {
     suma = () => {
-        this.props.sumarNum(this.props.numero)
+        this.props.sumarNum(parseInt(this.props.numero))
     }
 
     render() {
