@@ -10,10 +10,11 @@ export default class TablaMult extends Component {
     peticionForm = (event) => {
         event.preventDefault();
         let num = parseInt(this.cajaNum.current.value);
+        let mult = [];
         for (let i = 1; i <= 10; i++)
-            this.state.multiplos.push(num * i);
+            mult.push(num * i);
         this.setState({
-            multiplos: this.state.multiplos
+            multiplos: mult
         });
     }
 
@@ -39,6 +40,6 @@ export default class TablaMult extends Component {
                     </tbody>
                 </table>
             </div>
-        )
+        );
     }
 }
