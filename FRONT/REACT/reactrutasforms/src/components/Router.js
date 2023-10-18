@@ -5,6 +5,7 @@ import Cine from './Cine';
 import Musica from './Musica';
 import Collatz from './Collatz';
 import FormSimple from './FormSimple';
+import TablaMult from './TablaMult';
 
 export default class Router extends Component {
     render() {
@@ -16,6 +17,7 @@ export default class Router extends Component {
                     <Route path="/cine" element={<Cine />} />
                     <Route path="/ejemploform" element={<FormSimple />} />
                     <Route path="/collatz" element={<Collatz />} />
+                    <Route path="/tablamult" element={<TablaMult />} />
                 </Routes>
             </BrowserRouter >
         );

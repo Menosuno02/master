@@ -14,7 +14,6 @@ root.render(
     <hr />
     <Router />
     <hr />
-    <hr />
     <h2>Pie de página</h2>
   </React.StrictMode>
 );
