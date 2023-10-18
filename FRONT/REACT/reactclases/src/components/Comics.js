@@ -50,6 +50,13 @@ class Comics extends Component {
         });
     }
 
+    eliminarComic = (index) => {
+        this.state.comics.splice(index, 1);
+        this.setState({
+            comics: this.state.comics
+        });
+    }
+
     render() {
         return (
             <div>
@@ -64,7 +71,8 @@ class Comics extends Component {
                 }
                 {
                     this.state.comics.map((objComic, index) => {
-                        return (<Comic key={index} comic={objComic} selectFav={this.seleccionarFav} />)
+                        return (<Comic key={index} index={index} comic={objComic}
+                            selectFav={this.seleccionarFav} eliminarComic={this.eliminarComic} />)
                     })
                 }
             </div>

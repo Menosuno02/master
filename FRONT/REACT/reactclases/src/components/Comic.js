@@ -11,6 +11,9 @@ class Comic extends Component {
                 <button onClick={() => {
                     this.props.selectFav(this.props.comic)
                 }}>Seleccionar favorito</button>
+                <button onClick={() => {
+                    this.props.eliminarComic(this.props.index);
+                }}>Eliminar comic</button>
             </div>
         );
     }
