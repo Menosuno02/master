@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import Global from '../Global';
 
 export default class ServiciosCustomer extends Component {
-    urlApi = "https://northwind.netcore.io/customers.json";
-
     state = {
         customers: []
     }
 
     loadCustomers = () => {
-        console.log("Loading customers");
-        axios.get(this.urlApi).then((response) => {
+        console.log("Loading customers (tras montarse)");
+        let request = "customers.json";
+        axios.get(Global.urlApiCustomers + request).then((response) => {
             console.log(response.data);
             this.setState({
                 customers: response.data.results
@@ -19,7 +19,6 @@ export default class ServiciosCustomer extends Component {
     }
 
     componentDidMount = () => {
-        console.log("Loading customers (solo tras montarse)");
         this.loadCustomers();
     }
 

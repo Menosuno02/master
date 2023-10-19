@@ -3,12 +3,14 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
-import ServiciosCustomer from './components/ServiciosCustomer';
+import Router from './components/Router';
+import MenuLista from './components/MenuLista';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ServiciosCustomer />
+    <MenuLista />
+    <Router />
   </React.StrictMode>
 );
 
