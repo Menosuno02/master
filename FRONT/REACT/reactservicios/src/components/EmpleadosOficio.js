@@ -1,64 +1,66 @@
 import React, { Component } from 'react'
-import axios from 'axios';
-import Global from '../Global';
+import axios from 'axios'
+import Global from '../Global'
 
-export default class DeptEmple extends Component {
+export default class EmpleadosOficio extends Component {
     selectRef = React.createRef();
 
     state = {
-        dept: [],
+        oficios: [],
         emple: [],
-        statusDept: false,
+        statusOficios: false,
         statusEmple: false
     }
 
     findEmple = (event) => {
         event.preventDefault();
-        let idDept = this.selectRef.current.value;
-        let request = "api/Empleados/EmpleadosDepartamento/" + idDept;
+        let request = "api/Empleados/EmpleadosOficio/"
+            + this.selectRef.current.value;
         axios.get(Global.urlApiEmple + request).then((response) => {
+            console.log(response.data)
             this.setState({
                 emple: response.data,
                 statusEmple: true
-            });
+            })
         });
     }
 
-    loadDept = () => {
-        axios.get(Global.urlApiDept).then((response) => {
+    loadOficios = () => {
+        let request = "api/Empleados/oficios";
+        axios.get(Global.urlApiEmple + request).then((response) => {
             this.setState({
-                dept: response.data,
-                statusDept: true
+                oficios: response.data,
+                statusOficios: true
             });
         });
     }
 
     componentWillMount = () => {
-        this.loadDept();
+        this.loadOficios();
     }
 
     render() {
         return (
             <div>
-                <h1>Departamentos y Empleados</h1>
-                <label>Seleccione un departamento</label><br />
+                <h1>Oficios y Empleados</h1>
                 <form onSubmit={this.findEmple}>
+                    <label>Selecciona un oficio</label><br />
                     <select ref={this.selectRef}>
                         {
-                            this.state.statusDept &&
+                            this.state.statusOficios &&
                             (
-                                this.state.dept.map((dept, index) => {
+                                this.state.oficios.map((oficio, index) => {
                                     return (
                                         <option key={index}
-                                            value={dept.Numero}>
-                                            {dept.Nombre}</option>
+                                            value={oficio}>{oficio}
+                                        </option>
                                     );
                                 })
                             )
                         }
                     </select>
-                    <button>Visualizar empleados</button>
-                </form>
+                    <button>Buscar empleados</button>
+                </form><br />
                 {
                     this.state.statusEmple &&
                     (
@@ -68,18 +70,20 @@ export default class DeptEmple extends Component {
                                 textAlign: "center"
                             }}>
                                 <tr>
+                                    <td>ID</td>
                                     <td>Apellido</td>
-                                    <td>Oficio</td>
                                     <td>Salario</td>
+                                    <td>Departamento</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 {
                                     this.state.emple.map((emple, index) => {
                                         return (<tr key={index}>
+                                            <td>{emple.idEmpleado}</td>
                                             <td>{emple.apellido}</td>
-                                            <td>{emple.oficio}</td>
                                             <td>{emple.salario}</td>
+                                            <td>{emple.departamento}</td>
                                         </tr>);
                                     })
                                 }
@@ -88,6 +92,6 @@ export default class DeptEmple extends Component {
                     )
                 }
             </div>
-        );
+        )
     }
 }
