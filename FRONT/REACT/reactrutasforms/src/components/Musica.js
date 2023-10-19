@@ -6,7 +6,7 @@ export default class Musica extends Component {
         return (
             <div>
                 <h1 style={{ color: "blue" }}>Música</h1>
-                <img src={musicImage}
+                <img src={musicImage} alt=""
                     style={{ width: "250px", height: "250px" }}></img>
             </div>
         );

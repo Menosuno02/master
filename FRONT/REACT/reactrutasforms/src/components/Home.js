@@ -6,7 +6,7 @@ export default class Home extends Component {
         return (
             <div>
                 <h1 style={{ color: "red" }}>Home</h1>
-                <img src={homeImage}
+                <img src={homeImage} alt=""
                     style={{ width: "250px", height: "250px" }}></img>
             </div>
         );

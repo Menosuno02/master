@@ -6,7 +6,7 @@ export default class Cine extends Component {
         return (
             <div>
                 <h1 style={{ color: "orange" }}>Cine</h1>
-                <img src={cineImage}
+                <img src={cineImage} alt=""
                     style={{ width: "250px", height: "250px" }}></img>
             </div>
         );
