@@ -14,6 +14,9 @@ export default class MenuLista extends Component {
                     <li>
                         <a href="/coches">Filtrar Coches</a>
                     </li>
+                    <li>
+                        <a href="/deptemple">Departamentos y Empleados</a>
+                    </li>
                 </ul>
             </div>
         )
