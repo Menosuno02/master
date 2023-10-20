@@ -6,7 +6,7 @@ export default class MenuLista extends Component {
             <div>
                 <ul>
                     <li>
-                        <a href="/">Customers</a>
+                        <a href="/customers">Customers</a>
                     </li>
                     <li>
                         <a href="/customers_buscar">Buscar Customers</a>
@@ -21,7 +21,20 @@ export default class MenuLista extends Component {
                         <a href="/oficioemple">Empleados por Oficio</a>
                     </li>
                     <li>
-                        <a href="/dept">Departamentos (con child Empleados)</a>
+                        <a href="/dept">Departamentos (child Empleados)</a>
+                    </li>
+                    <br />
+                    <li>
+                        <a href="/">Home (Rutas Parámetros)</a>
+                    </li>
+                    <li>
+                        <a href="/tablamult/7">Tabla Multiplicar del 7</a>
+                    </li>
+                    <li>
+                        <a href="/tablamult/41">Tabla Multiplicar del 41</a>
+                    </li>
+                    <li>
+                        <a href="/noexisto">Ruta no mapeada (error)</a>
                     </li>
                 </ul>
             </div>

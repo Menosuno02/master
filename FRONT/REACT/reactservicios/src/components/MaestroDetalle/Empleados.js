@@ -9,11 +9,6 @@ export default class Empleados extends Component {
     }
 
     loadEmple = () => {
-        if (this.statusEmple) {
-            this.setState({
-                statusEmple: false
-            });
-        }
         let idDept = this.props.idDept;
         let request = "api/Empleados/EmpleadosDepartamento/" + idDept;
         axios.get(Global.urlApiEmple + request).then((response) => {
@@ -24,12 +19,15 @@ export default class Empleados extends Component {
         });
     }
 
-    componentDidUpdate = () => {
+    componentDidMount = () => {
         this.loadEmple();
     }
 
-    componentDidMount = () => {
-        this.loadEmple();
+    componentDidUpdate = (oldProps) => {
+        console.log(oldProps.idDept);
+        console.log(this.props.idDept);
+        if (this.props.idDept !== oldProps.idDept)
+            this.loadEmple();
     }
 
     render() {
