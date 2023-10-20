@@ -12,6 +12,7 @@ import Departamentos from './MaestroDetalle/Departamentos'
 import Home from './RutasParametros/Home'
 import NotFound from './RutasParametros/NotFound'
 import TablaMultiplicar from './RutasParametros/TablaMultiplicar'
+import Collatz from './RutasCollatz/Collatz'
 
 export default class Router extends Component {
     render() {
@@ -19,6 +20,11 @@ export default class Router extends Component {
             // Permititá capturas los parámetros de la ruta dinámicamente
             let { minumero } = useParams();
             return (<TablaMultiplicar numero={minumero} />);
+        }
+
+        function CollatzElement() {
+            let { numeroParam } = useParams();
+            return (<Collatz numero={numeroParam} />);
         }
 
         return (
@@ -35,6 +41,8 @@ export default class Router extends Component {
                     <Route path="/tablamult/:minumero" element={<TablaMultiplicarElement />} />
                     {/* Para rutas que no existan, * en path y última ruta en Routes */}
                     <Route path="*" element={<NotFound />} />
+
+                    <Route path="/collatz/:numeroParam" element={<CollatzElement />} />
                 </Routes>
             </BrowserRouter>
         );

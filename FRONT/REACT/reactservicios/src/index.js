@@ -5,11 +5,13 @@ import reportWebVitals from './reportWebVitals';
 
 import Router from './components/Router';
 import MenuRutas from './components/MenuRutas';
+import RutasCollatz from './components/RutasCollatz/RutasCollatz';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <MenuRutas />
+    <RutasCollatz />
     <Router />
   </React.StrictMode>
 );
