@@ -20,6 +20,9 @@ export default class MenuLista extends Component {
                     <li>
                         <a href="/oficioemple">Empleados por Oficio</a>
                     </li>
+                    <li>
+                        <a href="/dept">Departamentos (con child Empleados)</a>
+                    </li>
                 </ul>
             </div>
         )
