@@ -44,7 +44,7 @@ export default class Hospital extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container-fluid">
                 <br />
                 <h1>Hospital {this.props.idhospital}</h1>
                 <hr className="border border-primary opacity-100" />
@@ -65,10 +65,13 @@ export default class Hospital extends Component {
                                             <tr key={index}>
                                                 <td>{doctor.apellido}</td>
                                                 <td>{doctor.especialidad}</td>
-                                                <button
-                                                    onClick={() => this.getDetalles(doctor.idDoctor)}>
-                                                    Detalles
-                                                </button>
+                                                <td>
+                                                    <button className='btn btn-primary'
+                                                        onClick={() =>
+                                                            this.getDetalles(doctor.idDoctor)}>
+                                                        Detalles
+                                                    </button>
+                                                </td>
                                             </tr>
                                         );
                                     })
