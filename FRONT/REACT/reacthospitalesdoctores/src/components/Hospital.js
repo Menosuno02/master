@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import Global from '../Global'
 import axios from 'axios';
+import DetallesDoctor from './DetallesDoctor';
 
 export default class Hospital extends Component {
     state = {
         doctores: [],
-        statusDoctores: false
+        statusDoctores: false,
+        doctor: {},
+        statusDetalles: false
     }
 
     getDoctores = () => {
@@ -15,6 +18,17 @@ export default class Hospital extends Component {
             this.setState({
                 doctores: response.data,
                 statusDoctores: true
+            });
+        });
+    }
+
+    getDetalles = (id) => {
+        let url = Global.urlApiDoctores;
+        let request = "api/Doctores/" + id
+        axios.get(url + request).then((response) => {
+            this.setState({
+                doctor: response.data,
+                statusDetalles: true
             });
         });
     }
@@ -40,10 +54,8 @@ export default class Hospital extends Component {
                         <table className='table'>
                             <thead>
                                 <tr>
-                                    <th>ID</th>
                                     <th>Apellido</th>
                                     <th>Especialidad</th>
-                                    <th>Salario</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -51,16 +63,26 @@ export default class Hospital extends Component {
                                     this.state.doctores.map((doctor, index) => {
                                         return (
                                             <tr key={index}>
-                                                <td>{doctor.idDoctor}</td>
                                                 <td>{doctor.apellido}</td>
                                                 <td>{doctor.especialidad}</td>
-                                                <td>{doctor.salario}</td>
+                                                <button
+                                                    onClick={() => this.getDetalles(doctor.idDoctor)}>
+                                                    Detalles
+                                                </button>
                                             </tr>
                                         );
                                     })
                                 }
                             </tbody>
                         </table>
+                    )
+                }
+                {
+                    this.state.statusDetalles &&
+                    (
+                        <div>
+                            <DetallesDoctor doctor={this.state.doctor} />
+                        </div>
                     )
                 }
             </div >
