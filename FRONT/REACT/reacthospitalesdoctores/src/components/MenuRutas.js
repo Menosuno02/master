@@ -3,7 +3,7 @@ import axios from 'axios';
 import Global from '../Global';
 import { NavLink } from 'react-router-dom';
 
-export default class ListaRutas extends Component {
+export default class MenuRutas extends Component {
     state = {
         hospitales: [],
         statusHospitales: false
@@ -16,8 +16,8 @@ export default class ListaRutas extends Component {
             this.setState({
                 hospitales: response.data,
                 statusHospitales: true
-            })
-        })
+            });
+        });
     }
 
     componentDidMount = () => {
@@ -35,7 +35,11 @@ export default class ListaRutas extends Component {
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav">
                             <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a className="nav-link dropdown-toggle"
+                                    href="#"
+                                    role="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false">
                                     Hospitales
                                 </a>
                                 <ul className="dropdown-menu">
@@ -45,7 +49,11 @@ export default class ListaRutas extends Component {
                                             this.state.hospitales.map((hospital, index) => {
                                                 return (
                                                     <li key={index}>
-                                                        <NavLink className="dropdown-item" to={"/hospital/" + hospital.idhospital}>{hospital.nombre}</NavLink>
+                                                        <NavLink
+                                                            className="dropdown-item"
+                                                            to={"/hospital/" + hospital.idhospital}>
+                                                            {hospital.nombre}
+                                                        </NavLink>
                                                     </li>
                                                 );
                                             })
