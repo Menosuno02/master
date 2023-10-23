@@ -4,14 +4,15 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 
 import Router from './components/Router';
-import MenuRutas from './components/MenuRutas';
-import RutasCollatz from './components/RutasCollatz/RutasCollatz';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import $ from 'jquery';
+import Popper from 'popper.js';
+import "bootstrap/dist/js/bootstrap.bundle";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <MenuRutas />
-    <RutasCollatz />
     <Router />
   </React.StrictMode>
 );

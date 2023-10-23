@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { NavLink } from 'react-router-dom'
 
 export default class MenuLista extends Component {
     render() {
@@ -6,35 +7,22 @@ export default class MenuLista extends Component {
             <div>
                 <ul>
                     <li>
-                        <a href="/customers">Customers</a>
+                        <NavLink to="/customers">Customers</NavLink>
                     </li>
                     <li>
-                        <a href="/customers_buscar">Buscar Customers</a>
+                        <NavLink to="/customers_buscar">Buscar Customers</NavLink>
                     </li>
                     <li>
-                        <a href="/coches">Filtrar Coches</a>
+                        <NavLink to="/coches">Filtrar Coches</NavLink>
                     </li>
                     <li>
-                        <a href="/deptemple">Empleados por Dept</a>
+                        <NavLink to="/deptemple">Empleados por Dept</NavLink>
                     </li>
                     <li>
-                        <a href="/oficioemple">Empleados por Oficio</a>
+                        <NavLink to="/oficioemple">Empleados por Oficio</NavLink>
                     </li>
                     <li>
-                        <a href="/dept">Departamentos (child Empleados)</a>
-                    </li>
-                    <br />
-                    <li>
-                        <a href="/">Home (Rutas Parámetros)</a>
-                    </li>
-                    <li>
-                        <a href="/tablamult/7">Tabla Multiplicar del 7</a>
-                    </li>
-                    <li>
-                        <a href="/tablamult/41">Tabla Multiplicar del 41</a>
-                    </li>
-                    <li>
-                        <a href="/noexisto">Ruta no mapeada (error)</a>
+                        <NavLink to="/dept">Dept (child Empleados)</NavLink>
                     </li>
                 </ul>
             </div>

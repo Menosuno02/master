@@ -8,12 +8,11 @@ export default class Collatz extends Component {
     numCollatz = () => {
         let nums = [];
         let num = parseInt(this.props.numero);
-        while (num >= 1) {
+        while (num !== 1) {
             nums.push(num);
-            if (num === 1) break;
-            else
-                (num % 2 === 0) ? num /= 2 : num = num * 3 + 1;
+            (num % 2 === 0) ? num /= 2 : num = num * 3 + 1;
         }
+        nums.push(1);
         this.setState({
             numeros: nums
         });
@@ -21,6 +20,11 @@ export default class Collatz extends Component {
 
     componentDidMount = () => {
         this.numCollatz();
+    }
+
+    componentDidUpdate = (oldProps) => {
+        if (this.props.numero !== oldProps.numero)
+            this.numCollatz();
     }
 
     render() {

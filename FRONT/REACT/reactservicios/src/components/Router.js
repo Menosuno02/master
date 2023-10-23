@@ -13,22 +13,28 @@ import Home from './RutasParametros/Home'
 import NotFound from './RutasParametros/NotFound'
 import TablaMultiplicar from './RutasParametros/TablaMultiplicar'
 import Collatz from './RutasCollatz/Collatz'
+import RutasCollatz from './RutasCollatz/RutasCollatz'
+import MenuRutas from './MenuRutas'
 
 export default class Router extends Component {
     render() {
         function TablaMultiplicarElement() {
             // Permititá capturas los parámetros de la ruta dinámicamente
-            let { minumero } = useParams();
-            return (<TablaMultiplicar numero={minumero} />);
+            let { numero } = useParams();
+            return (<TablaMultiplicar numero={numero} />);
         }
 
         function CollatzElement() {
-            let { numeroParam } = useParams();
-            return (<Collatz numero={numeroParam} />);
+            let { numero } = useParams();
+            return (<Collatz numero={numero} />);
         }
 
         return (
             <BrowserRouter>
+                <h2 style={{ color: "orange" }}>Menús en Router</h2>
+                <MenuRutas />
+                <RutasCollatz />
+
                 <Routes>
                     <Route path="/customers" element={<ServiciosCustomer />} />
                     <Route path="/customers_buscar" element={<BuscadorCustomer />} />
@@ -38,11 +44,11 @@ export default class Router extends Component {
                     <Route path="/dept" element={<Departamentos />} />
 
                     <Route path="/" element={<Home />} />
-                    <Route path="/tablamult/:minumero" element={<TablaMultiplicarElement />} />
+                    <Route path="/tablamult/:numero" element={<TablaMultiplicarElement />} />
                     {/* Para rutas que no existan, * en path y última ruta en Routes */}
                     <Route path="*" element={<NotFound />} />
 
-                    <Route path="/collatz/:numeroParam" element={<CollatzElement />} />
+                    <Route path="/collatz/:numero" element={<CollatzElement />} />
                 </Routes>
             </BrowserRouter>
         );
