@@ -1,24 +1,19 @@
 import React, { Component } from 'react'
+import Global from '../Global';
+import axios from 'axios';
 
 export default class DetallesDoctor extends Component {
     state = {
-        doctor: {
-            id: "",
-            apellido: "",
-            especialidad: "",
-            salario: 0
-        }
+        doctor: {}
     }
 
     updateDoctor = () => {
-        let doctor = this.props.doctor;
-        this.setState({
-            doctor: {
-                id: doctor.idDoctor,
-                apellido: doctor.apellido,
-                especialidad: doctor.especialidad,
-                salario: doctor.salario
-            }
+        let url = Global.urlApiDoctores;
+        let request = "api/Doctores/" + this.props.iddoctor;
+        axios.get(url + request).then((response) => {
+            this.setState({
+                doctor: response.data
+            });
         });
     }
 
@@ -27,41 +22,57 @@ export default class DetallesDoctor extends Component {
     }
 
     componentDidUpdate = (oldProps) => {
-        if (this.props.doctor.idDoctor !== oldProps.doctor.idDoctor)
+        if (this.props.idhospital !== oldProps.idhospital) {
+            this.setState({
+                doctor: {}
+            });
+        }
+        if (this.props.iddoctor !== oldProps.iddoctor)
             this.updateDoctor();
     }
 
     render() {
         return (
             <div>
-                <h2>Detalles de {this.props.doctor.idDoctor}</h2>
-                <form>
-                    <div class="mb-3">
-                        <label class="form-label">ID</label>
-                        <input type="text" disabled
-                            class="form-control"
-                            value={this.state.doctor.id} />
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Apellido</label>
-                        <input type="text" disabled
-                            class="form-control"
-                            value={this.state.doctor.apellido} />
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Especialidad</label>
-                        <input type="text" disabled
-                            class="form-control"
-                            value={this.state.doctor.especialidad} />
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Salario</label>
-                        <input type="text" disabled
-                            class="form-control"
-                            value={this.state.doctor.salario} />
-                    </div>
-                </form>
+                {
+                    this.state.doctor.idDoctor != null &&
+                    (
+                        <div className='container-fluid'>
+                            <h2>Detalles de {this.props.iddoctor}</h2>
+                            <form className='row'>
+                                <div className="col-6">
+                                    <div className="mb-3">
+                                        <label className="form-label">ID</label>
+                                        <input type="text" disabled
+                                            className="form-control"
+                                            value={this.props.iddoctor} />
+                                    </div>
+                                    <div className="mb-3">
+                                        <label className="form-label">Apellido</label>
+                                        <input type="text" disabled
+                                            className="form-control"
+                                            value={this.state.doctor.apellido} />
+                                    </div>
+                                </div>
+                                <div className="col-6">
+                                    <div className="mb-3">
+                                        <label className="form-label">Especialidad</label>
+                                        <input type="text" disabled
+                                            className="form-control"
+                                            value={this.state.doctor.especialidad} />
+                                    </div>
+                                    <div className="mb-3">
+                                        <label className="form-label">Salario</label>
+                                        <input type="text" disabled
+                                            className="form-control"
+                                            value={this.state.doctor.salario} />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    )
+                }
             </div>
-        )
+        );
     }
 }

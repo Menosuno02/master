@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import Global from '../Global'
 import axios from 'axios';
 import DetallesDoctor from './DetallesDoctor';
+import { NavLink } from 'react-router-dom';
 
 export default class Hospital extends Component {
     state = {
         doctores: [],
         statusDoctores: false,
-        doctor: {},
-        statusDetalles: false
+        iddoctor: null
     }
 
     getDoctores = () => {
@@ -23,13 +23,8 @@ export default class Hospital extends Component {
     }
 
     getDetalles = (id) => {
-        let url = Global.urlApiDoctores;
-        let request = "api/Doctores/" + id
-        axios.get(url + request).then((response) => {
-            this.setState({
-                doctor: response.data,
-                statusDetalles: true
-            });
+        this.setState({
+            iddoctor: id
         });
     }
 
@@ -56,6 +51,7 @@ export default class Hospital extends Component {
                                 <tr>
                                     <th>Apellido</th>
                                     <th>Especialidad</th>
+                                    <th />
                                 </tr>
                             </thead>
                             <tbody>
@@ -66,11 +62,15 @@ export default class Hospital extends Component {
                                                 <td>{doctor.apellido}</td>
                                                 <td>{doctor.especialidad}</td>
                                                 <td>
-                                                    <button className='btn btn-primary'
+                                                    <button className='btn btn-primary btn-sm'
                                                         onClick={() =>
                                                             this.getDetalles(doctor.idDoctor)}>
                                                         Detalles
                                                     </button>
+                                                    <NavLink
+                                                        className="btn btn-primary btn-sm"
+                                                        to={"/detalles_doctor/" + doctor.idDoctor + "/" + this.props.idhospital}>Detalles (NavLink)
+                                                    </NavLink>
                                                 </td>
                                             </tr>
                                         );
@@ -81,14 +81,14 @@ export default class Hospital extends Component {
                     )
                 }
                 {
-                    this.state.statusDetalles &&
+                    this.state.iddoctor != null &&
                     (
-                        <div>
-                            <DetallesDoctor doctor={this.state.doctor} />
-                        </div>
+                        <DetallesDoctor
+                            iddoctor={this.state.iddoctor}
+                            idhospital={this.props.idhospital} />
                     )
                 }
-            </div >
+            </div>
         );
     }
 }
