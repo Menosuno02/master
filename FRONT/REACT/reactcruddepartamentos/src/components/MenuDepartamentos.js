@@ -5,7 +5,7 @@ import homeImage from "../assets/images/home.jpg"
 export default class MenuDepartamentos extends Component {
     render() {
         return (
-            <nav className="navbar navbar-expand-lg bg-body-tertiary">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
                 <div className="container-fluid">
                     <img src={homeImage}
                         alt="Logo"
