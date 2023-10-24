@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import Global from '../Global';
 import axios from 'axios';
+import { Navigate } from 'react-router-dom';
 
 export default class CreateHospital extends Component {
     state = {
-        mensaje: ""
+        mensaje: "",
+        status: false
     }
 
     cajaId = React.createRef();
@@ -26,7 +28,8 @@ export default class CreateHospital extends Component {
         let request = "webresources/hospitales/post";
         axios.post(url + request, hospital).then((response) => {
             this.setState({
-                mensaje: "Hospital " + hospital.nombre + " insertado"
+                mensaje: "Hospital " + hospital.nombre + " insertado",
+                status: true
             });
         });
     }
@@ -34,6 +37,12 @@ export default class CreateHospital extends Component {
     render() {
         return (
             <div className="container-fluid mt-3">
+                {
+                    this.state.status &&
+                    (
+                        <Navigate to="/hospitales" />
+                    )
+                }
                 <h1>Crear Hospital</h1>
                 <hr className="border border-primary opacity-100" />
                 <h2 style={{ color: "blue" }}>{this.state.mensaje}</h2>

@@ -23,6 +23,10 @@ export default class ListaHospitales extends Component {
         this.loadHospitales();
     }
 
+    componentDidUpdate = () => {
+        this.loadHospitales();
+    }
+
     render() {
         return (
             <div className='container-fluid mt-3'>
@@ -31,7 +35,32 @@ export default class ListaHospitales extends Component {
                 {
                     this.state.statusHospitales &&
                     (
-                        <table></table>
+                        <table className="table">
+                            <thead className="border-primary">
+                                <tr>
+                                    <th>ID Hospital</th>
+                                    <th>Nombre</th>
+                                    <th>Dirección</th>
+                                    <th>Teléfono</th>
+                                    <th>Camas</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    this.state.hospitales.map((hospital, index) => {
+                                        return (
+                                            <tr key={index}>
+                                                <td>{hospital.idhospital}</td>
+                                                <td>{hospital.nombre}</td>
+                                                <td>{hospital.direccion}</td>
+                                                <td>{hospital.telefono}</td>
+                                                <td>{hospital.camas}</td>
+                                            </tr>
+                                        );
+                                    })
+                                }
+                            </tbody>
+                        </table>
                     )
                 }
             </div>
