@@ -33,19 +33,19 @@ export default class DetallesDoctor extends Component {
 
     render() {
         return (
-            <div>
+            <div className='mt-3'>
                 {
                     this.state.doctor.idDoctor != null &&
                     (
                         <div className='container-fluid'>
-                            <h2>Detalles de {this.props.iddoctor}</h2>
+                            <h2>Detalles de {this.state.doctor.idDoctor}</h2>
                             <form className='row'>
                                 <div className="col-6">
                                     <div className="mb-3">
                                         <label className="form-label">ID</label>
                                         <input type="text" disabled
                                             className="form-control"
-                                            value={this.props.iddoctor} />
+                                            value={this.state.doctor.idDoctor} />
                                     </div>
                                     <div className="mb-3">
                                         <label className="form-label">Apellido</label>

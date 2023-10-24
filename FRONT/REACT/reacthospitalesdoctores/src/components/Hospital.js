@@ -62,14 +62,14 @@ export default class Hospital extends Component {
                                                 <td>{doctor.apellido}</td>
                                                 <td>{doctor.especialidad}</td>
                                                 <td>
-                                                    <button className='btn btn-primary btn-sm'
+                                                    <button className='btn btn-primary btn-sm me-1'
                                                         onClick={() =>
                                                             this.getDetalles(doctor.idDoctor)}>
                                                         Detalles
                                                     </button>
                                                     <NavLink
                                                         className="btn btn-primary btn-sm"
-                                                        to={"/detalles_doctor/" + doctor.idDoctor + "/" + this.props.idhospital}>Detalles (NavLink)
+                                                        to={"/hospital/" + this.props.idhospital + "/" + doctor.idDoctor}>Detalles (NavLink)
                                                     </NavLink>
                                                 </td>
                                             </tr>
@@ -84,8 +84,9 @@ export default class Hospital extends Component {
                     this.state.iddoctor != null &&
                     (
                         <DetallesDoctor
+                            idhospital={this.props.idhospital}
                             iddoctor={this.state.iddoctor}
-                            idhospital={this.props.idhospital} />
+                        />
                     )
                 }
             </div>

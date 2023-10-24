@@ -24,6 +24,10 @@ export default class MenuRutas extends Component {
         this.getHosp();
     }
 
+    componentDidUpdate = () => {
+        this.getHosp();
+    }
+
     render() {
         return (
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -35,13 +39,18 @@ export default class MenuRutas extends Component {
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav">
                             <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle"
-                                    href="#"
-                                    role="button"
+                                <li className='nav-item'>
+                                    <NavLink className="nav-link"
+                                        to="/">
+                                        Página principal</NavLink>
+                                </li>
+                                <NavLink to="/"
+                                    className="nav-link dropdown-toggle"
                                     data-bs-toggle="dropdown"
                                     aria-expanded="false">
                                     Hospitales
-                                </a>
+                                </NavLink>
+
                                 <ul className="dropdown-menu">
                                     {
                                         this.state.statusHospitales &&
@@ -60,6 +69,17 @@ export default class MenuRutas extends Component {
                                         )
                                     }
                                 </ul>
+                            </li>
+                            <li className='nav-item'>
+                                <NavLink className="nav-link"
+                                    to="/create_hospital">
+                                    Crear hospital</NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink className="nav-link"
+                                    to="/hospitales">
+                                    Lista hospitales
+                                </NavLink>
                             </li>
                         </ul>
                     </div>
