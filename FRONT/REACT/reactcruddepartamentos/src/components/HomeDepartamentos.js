@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useRef } from 'react'
 import Global from '../Global';
 import axios from 'axios';
 import loadingImage from "../assets/images/loading.gif"
@@ -23,10 +23,7 @@ export default class HomeDepartamentos extends Component {
 
   componentDidMount = () => {
     this.loadDepartamentos();
-  }
-
-  componentDidUpdate = () => {
-    this.loadDepartamentos();
+    setInterval(() => this.loadDepartamentos(), 2500);
   }
 
   render() {
@@ -59,12 +56,20 @@ export default class HomeDepartamentos extends Component {
                           <td>{dept.localidad}</td>
                           <td>
                             <NavLink
-                              className="btn btn-success btn-sm"
+                              className="btn btn-success btn-sm me-1"
                               to={"/detalles/" + dept.numero +
                                 "/" + dept.nombre +
                                 "/" + dept.localidad}>
                               Detalles
                             </NavLink>
+                            <NavLink
+                              className="btn btn-primary btn-sm me-1"
+                              to={"/update/" + dept.numero}>
+                              Modificar</NavLink>
+                            <NavLink
+                              className="btn btn-danger btn-sm"
+                              to={"/delete/" + dept.numero}>
+                              Eliminar</NavLink>
                           </td>
                         </tr>
                       );
