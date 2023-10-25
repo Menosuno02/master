@@ -9,7 +9,10 @@ export default class CreateCoche extends Component {
     cajaModelo = React.createRef();
     cajaConductor = React.createRef();
     cajaImagen = React.createRef();
-    // También con event.target.files[0].name
+    /**
+     * También con event.target.files[0].name y /static/media
+     * O con var reactiva file = event.target.files[0] y file = URL.createObjectURL(file)
+     */
 
     state = {
         status: false
@@ -18,7 +21,7 @@ export default class CreateCoche extends Component {
     createCoche = (event) => {
         event.preventDefault();
         let img = "/static/media/" +
-            this.cajaImagen.current.value.split("\\").pop()
+            this.cajaImagen.current.value.split("\\").pop();
         let coche = {
             idCoche: parseInt(this.cajaId.current.value),
             marca: this.cajaMarca.current.value,
