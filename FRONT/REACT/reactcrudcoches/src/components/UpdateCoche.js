@@ -9,12 +9,12 @@ export default class UpdateCoche extends Component {
     cajaModelo = React.createRef();
     cajaConductor = React.createRef();
     cajaImagen = React.createRef();
+    // También con event.target.files[0].name
 
     state = {
         coche: {},
         statusFind: false,
-        statusUpdate: false,
-        file: null
+        statusUpdate: false
     }
 
     findCoche = () => {
@@ -30,12 +30,14 @@ export default class UpdateCoche extends Component {
 
     updateCoche = (event) => {
         event.preventDefault();
+        let img = "/static/media/" +
+            this.cajaImagen.current.value.split("\\").pop();
         let coche = {
             idCoche: parseInt(this.cajaId.current.value),
             marca: this.cajaMarca.current.value,
             modelo: this.cajaModelo.current.value,
             conductor: this.cajaConductor.current.value,
-            imagen: URL.createObjectURL(this.state.file)
+            imagen: img
         }
         let url = Global.urlApiCoches;
         let request = "api/Coches/UpdateCoche";
@@ -99,6 +101,7 @@ export default class UpdateCoche extends Component {
                                     <label className='form-label'>Imagen</label>
                                     <input
                                         className='form-control'
+                                        ref={this.cajaImagen}
                                         type="file"
                                         onChange={(event) => {
                                             this.setState({
@@ -123,7 +126,6 @@ export default class UpdateCoche extends Component {
                             </form>
                         )
                     }
-
                 </div>
             );
         }

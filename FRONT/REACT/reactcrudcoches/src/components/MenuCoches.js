@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 export default class MenuCoches extends Component {
     render() {
         return (
-            <nav className="navbar navbar-expand-lg bg-primary"
+            <nav className="navbar navbar-expand-md bg-primary"
                 data-bs-theme="dark">
                 <div className="container-fluid">
                     <span className='navbar-brand'>CRUD Coches</span>

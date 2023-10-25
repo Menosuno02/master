@@ -9,6 +9,7 @@ export default class CreateCoche extends Component {
     cajaModelo = React.createRef();
     cajaConductor = React.createRef();
     cajaImagen = React.createRef();
+    // También con event.target.files[0].name
 
     state = {
         status: false
@@ -16,13 +17,14 @@ export default class CreateCoche extends Component {
 
     createCoche = (event) => {
         event.preventDefault();
-        console.log(event.target.files[0]);
+        let img = "/static/media/" +
+            this.cajaImagen.current.value.split("\\").pop()
         let coche = {
             idCoche: parseInt(this.cajaId.current.value),
             marca: this.cajaMarca.current.value,
             modelo: this.cajaModelo.current.value,
             conductor: this.cajaConductor.current.value,
-            imagen: this.cajaImagen.current.value
+            imagen: img
         }
         let url = Global.urlApiCoches;
         let request = "api/Coches/InsertCoche";
@@ -75,7 +77,8 @@ export default class CreateCoche extends Component {
                             <input
                                 className='form-control'
                                 ref={this.cajaImagen}
-                                type="file" />
+                                type="file"
+                            />
                         </div>
                         <div className="row mt-3">
                             <div className="col-6">

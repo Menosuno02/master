@@ -18,8 +18,8 @@ export default class HomeCoches extends Component {
       this.setState({
         coches: response.data,
         status: true
-      })
-    })
+      });
+    });
   }
 
   deleteCoche = (id) => {
@@ -59,7 +59,9 @@ export default class HomeCoches extends Component {
 
   render() {
     if (!this.state.status)
-      return (<img className='d-block mx-auto' src={loadingImage} alt="" />)
+      return (
+        <img className='d-block mx-auto' src={loadingImage} alt="" />
+      );
     else {
       return (
         <div className='container-fluid mt-3'>
@@ -73,7 +75,6 @@ export default class HomeCoches extends Component {
                   <tr>
                     <th>Marca</th>
                     <th>Modelo</th>
-                    <th>Conductor</th>
                     <th>Imagen</th>
                     <th></th>
                   </tr>
@@ -85,7 +86,6 @@ export default class HomeCoches extends Component {
                         <tr>
                           <td>{coche.marca}</td>
                           <td>{coche.modelo}</td>
-                          <td>{coche.conductor}</td>
                           <td>
                             <img
                               className='img-fluid'
