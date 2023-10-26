@@ -37,7 +37,7 @@ export default class Apuestas extends Component {
                     <hr className='border border-primary opacity-100' />
                     <NavLink
                         to="/create_apuesta"
-                        className="btn btn-danger w-100">
+                        className="btn btn-primary w-100">
                         Realizar apuesta
                     </NavLink>
                     <h2 className='text-primary fw-bold mt-4 text-center'>
@@ -55,7 +55,7 @@ export default class Apuestas extends Component {
                             {
                                 this.state.apuestas.map((apuesta, index) => {
                                     return (
-                                        <tr>
+                                        <tr key={index}>
                                             <td>{apuesta.usuario}</td>
                                             <td>{apuesta.resultado}</td>
                                             <td>{apuesta.fecha}</td>

@@ -1,5 +1,5 @@
 let Global = {
-    urlApi: "https://apiejemplos.azurewebsites.net/",
+    urlApiEjemplos: "https://apiejemplos.azurewebsites.net/",
     urlApiApuestas: "https://apiapuestas.azurewebsites.net/"
 }
 

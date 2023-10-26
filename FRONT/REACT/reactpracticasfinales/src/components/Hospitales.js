@@ -8,6 +8,9 @@ export default class Hospitales extends Component {
     selectMultiple = React.createRef();
     cajaIncremento = React.createRef();
     selected = []
+    // SE PUEDE LLEVAR LAS FUNCIONES LOAD Y SEARCH
+    // A TRABAJADORES Y PASAR COMO PROP LOS IDHOSP COMO STRING
+    // -DE ARRAY A STRING- EN VEZ DEL ARRAY DE TRABJAODRES
 
     state = {
         hospitales: [],
@@ -17,7 +20,7 @@ export default class Hospitales extends Component {
     }
 
     loadHospitales = () => {
-        let url = Global.urlApi;
+        let url = Global.urlApiEjemplos;
         let request = "api/Hospitales";
         axios.get(url + request).then((response) => {
             this.setState({
@@ -30,7 +33,7 @@ export default class Hospitales extends Component {
     searchTrabajadores = () => {
         this.selected = this.selectMultiple.current.selectedOptions;
         if (this.selected.length > 0) {
-            let url = Global.urlApi;
+            let url = Global.urlApiEjemplos;
             let request = "api/Trabajadores/TrabajadoresHospitales?";
             for (let id of this.selected)
                 request += "idhospital=" + id.value + "&";
@@ -50,7 +53,7 @@ export default class Hospitales extends Component {
     incrementarSueldos = (event) => {
         event.preventDefault();
         if (this.cajaIncremento.current.value !== "") {
-            let url = Global.urlApi;
+            let url = Global.urlApiEjemplos;
             let request = "api/Trabajadores/UpdateSalarioTrabajadoresHospitales"
                 + "?incremento=" + parseInt(this.cajaIncremento.current.value) + "&";
             for (let id of this.selected)
