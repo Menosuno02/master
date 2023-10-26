@@ -18,16 +18,16 @@ export default class Trabajadores extends Component {
                     </thead>
                     <tbody>
                         {
-                            this.props.trabajadores.map((t, index) => {
+                            this.props.trabajadores.map((trabajador, index) => {
                                 return (
                                     <tr key={index}>
-                                        <td>{t.idTrabajador}</td>
-                                        <td>{t.apellido}</td>
-                                        <td>{t.oficio}</td>
-                                        <td>{t.salario}</td>
-                                        <td>{t.idHospital}</td>
+                                        <td>{trabajador.idTrabajador}</td>
+                                        <td>{trabajador.apellido}</td>
+                                        <td>{trabajador.oficio}</td>
+                                        <td>{trabajador.salario}</td>
+                                        <td>{trabajador.idHospital}</td>
                                     </tr>
-                                )
+                                );
                             })
                         }
                     </tbody>
