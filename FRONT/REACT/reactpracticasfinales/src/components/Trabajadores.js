@@ -9,11 +9,11 @@ export default class Trabajadores extends Component {
                 <table className='table'>
                     <thead className='border-primary'>
                         <tr>
-                            <td>ID</td>
-                            <td>Apellido</td>
-                            <td>Oficio</td>
-                            <td>Salario</td>
-                            <td>ID Hospital</td>
+                            <th>ID</th>
+                            <th>Apellido</th>
+                            <th>Oficio</th>
+                            <th>Salario</th>
+                            <th>ID Hospital</th>
                         </tr>
                     </thead>
                     <tbody>

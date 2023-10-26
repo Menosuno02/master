@@ -34,12 +34,9 @@ export default class Hospitales extends Component {
             if (opcion.selected) this.selected.push(opcion);
         if (this.selected.length > 0) {
             let url = Global.urlApi;
-            let request = "api/Trabajadores/TrabajadoresHospitales";
-            for (let i = 0; i < this.selected.length; i++) {
-                (i === 0)
-                    ? request += "?idhospital=" + this.selected[i].value + "&"
-                    : request += "idhospital=" + this.selected[i].value + "&";
-            }
+            let request = "api/Trabajadores/TrabajadoresHospitales?";
+            for (let id of this.selected)
+                request += "idhospital=" + id.value + "&";
             axios.get(url + request).then((response) => {
                 this.setState({
                     trabajadores: response.data,
@@ -59,11 +56,8 @@ export default class Hospitales extends Component {
             let url = Global.urlApi;
             let request = "api/Trabajadores/UpdateSalarioTrabajadoresHospitales"
                 + "?incremento=" + parseInt(this.cajaIncremento.current.value) + "&";
-            for (let i = 0; i < this.selected.length; i++) {
-                (i === 0)
-                    ? request += "&idhospital=" + this.selected[i].value + "&"
-                    : request += "idhospital=" + this.selected[i].value + "&";
-            }
+            for (let id of this.selected)
+                request += "idhospital=" + id.value + "&";
             axios.put(url + request).then((response) => {
                 this.searchTrabajadores();
             });
@@ -86,7 +80,8 @@ export default class Hospitales extends Component {
                     <select ref={this.selectMultiple}
                         className=' form-select'
                         onChange={this.searchTrabajadores}
-                        multiple>
+                        multiple
+                        size={this.state.hospitales.length}>
                         {
                             this.state.hospitales.map((hospital, index) => {
                                 return (
@@ -101,7 +96,7 @@ export default class Hospitales extends Component {
                     {
                         this.state.statusTrabajadores &&
                         (
-                            <div className='mt-5'>
+                            <div className='mt-3'>
                                 <form>
                                     <label
                                         className='form-label'>
