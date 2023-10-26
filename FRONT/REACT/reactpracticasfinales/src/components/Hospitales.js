@@ -28,10 +28,7 @@ export default class Hospitales extends Component {
     }
 
     searchTrabajadores = () => {
-        this.selected = [];
-        let opciones = this.selectMultiple.current.options;
-        for (let opcion of opciones)
-            if (opcion.selected) this.selected.push(opcion);
+        this.selected = this.selectMultiple.current.selectedOptions;
         if (this.selected.length > 0) {
             let url = Global.urlApi;
             let request = "api/Trabajadores/TrabajadoresHospitales?";
