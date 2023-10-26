@@ -63,7 +63,7 @@ export default class SearchJugadores extends Component {
                       </td>
                       <td>
                         <NavLink
-                          to={"/detalles/" + jugador.idJugador}
+                          to={"/jugador/" + jugador.idJugador}
                           className="btn btn-primary">
                           Detalles
                         </NavLink>

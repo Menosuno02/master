@@ -42,7 +42,7 @@ export default class Jugador extends Component {
                             {this.state.jugador.nombre}
                         </div>
                         <div className='card-body'>
-                            <img className='img-fluid mb-2'
+                            <img className='img-fluid mb-2 w-25'
                                 alt="" src={this.state.jugador.imagen} />
                             <h5 className='card-title'>
                                 {this.state.jugador.posicion}

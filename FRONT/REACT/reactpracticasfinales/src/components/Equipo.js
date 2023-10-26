@@ -38,7 +38,7 @@ export default class Equipo extends Component {
     else {
       return (
         <div className='container-fluid mt-3'>
-          <div className='card d-block mx-auto'>
+          <div className='card text-center'>
             <div className='card-header'>
               {this.state.equipo.nombre}
             </div>
