@@ -30,7 +30,7 @@ export default class Trabajadores extends Component {
             for (let id of this.props.idhospitales.split(","))
                 request += "idhospital=" + id + "&";
             axios.put(url + request).then((response) => {
-                this.loadTrabajadores()
+                this.loadTrabajadores();
             });
         }
     }
