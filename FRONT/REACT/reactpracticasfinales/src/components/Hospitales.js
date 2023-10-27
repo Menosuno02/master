@@ -6,17 +6,12 @@ import Trabajadores from './Trabajadores';
 
 export default class Hospitales extends Component {
     selectMultiple = React.createRef();
-    cajaIncremento = React.createRef();
-    selected = []
-    // SE PUEDE LLEVAR LAS FUNCIONES LOAD Y SEARCH
-    // A TRABAJADORES Y PASAR COMO PROP LOS IDHOSP COMO STRING
-    // -DE ARRAY A STRING- EN VEZ DEL ARRAY DE TRABJAODRES
 
     state = {
         hospitales: [],
         statusHospitales: false,
-        trabajadores: [],
-        statusTrabajadores: false
+        statusTrabajadores: false,
+        selected: ""
     }
 
     loadHospitales = () => {
@@ -31,35 +26,17 @@ export default class Hospitales extends Component {
     }
 
     searchTrabajadores = () => {
-        this.selected = this.selectMultiple.current.selectedOptions;
-        if (this.selected.length > 0) {
-            let url = Global.urlApiEjemplos;
-            let request = "api/Trabajadores/TrabajadoresHospitales?";
-            for (let id of this.selected)
-                request += "idhospital=" + id.value + "&";
-            axios.get(url + request).then((response) => {
-                this.setState({
-                    trabajadores: response.data,
-                    statusTrabajadores: true
-                });
+        let aux = "";
+        for (let id of this.selectMultiple.current.selectedOptions)
+            aux += id.value + ","
+        if (aux.length > 0) {
+            this.setState({
+                selected: aux.slice(0, -1),
+                statusTrabajadores: true
             });
         } else {
             this.setState({
                 statusTrabajadores: false
-            });
-        }
-    }
-
-    incrementarSueldos = (event) => {
-        event.preventDefault();
-        if (this.cajaIncremento.current.value !== "") {
-            let url = Global.urlApiEjemplos;
-            let request = "api/Trabajadores/UpdateSalarioTrabajadoresHospitales"
-                + "?incremento=" + parseInt(this.cajaIncremento.current.value) + "&";
-            for (let id of this.selected)
-                request += "idhospital=" + id.value + "&";
-            axios.put(url + request).then((response) => {
-                this.searchTrabajadores();
             });
         }
     }
@@ -96,23 +73,8 @@ export default class Hospitales extends Component {
                     {
                         this.state.statusTrabajadores &&
                         (
-                            <div className='mt-3'>
-                                <form>
-                                    <label
-                                        className='form-label'>
-                                        Incremento</label>
-                                    <input
-                                        className='form-control'
-                                        ref={this.cajaIncremento}
-                                        type="number" />
-                                    <button
-                                        className='btn btn-primary btn-sm w-100 mt-3'
-                                        onClick={this.incrementarSueldos}>
-                                        Incrementar sueldos</button>
-                                </form>
-                                <Trabajadores
-                                    trabajadores={this.state.trabajadores} />
-                            </div>
+                            <Trabajadores className="mt-3"
+                                idhospitales={this.state.selected} />
                         )
                     }
                 </div>
