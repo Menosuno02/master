@@ -1,6 +1,6 @@
 <template>
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-  <h1>Título estático App.vue</h1>
+  <h1 style="color: blueviolet;">Título estático App.vue</h1>
   <hr />
   <!-- <HolaMundo /> -->
   <MenuComponent />
