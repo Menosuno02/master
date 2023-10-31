@@ -4,6 +4,7 @@ import MusicaComponent from './components/MusicaComponent.vue';
 import HolaMundoComponent from "./components/HolaMundo.vue"
 import CicloVidaComponent from "./components/CicloVidaComponent.vue"
 import DirectivasComponent from "./components/DirectivasComponent.vue"
+import PropComputadasComponent from "./components/PropComputadas.vue"
 
 import { createRouter, createWebHistory } from 'vue-router';
 
@@ -25,6 +26,9 @@ const Rutas = [
     },
     {
         path: "/directivas", component: DirectivasComponent
+    },
+    {
+        path: "/computadas", component: PropComputadasComponent
     }
 ];
 

@@ -6,6 +6,7 @@
         <router-link to="/musica">Música</router-link>
         <router-link to="/ciclovida">Hooks</router-link>
         <router-link to="/directivas">Directivas</router-link>
+        <router-link to="/computadas">Computed</router-link>
     </div>
 </template>
 
