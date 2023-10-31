@@ -7,6 +7,8 @@
         <router-link to="/ciclovida">Hooks</router-link>
         <router-link to="/directivas">Directivas</router-link>
         <router-link to="/computadas">Computed</router-link>
+        <router-link to="/parimpar">Par Impar</router-link>
+        <router-link to="/filters">Métodos Filter</router-link>
     </div>
 </template>
 
