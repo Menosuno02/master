@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>Padre</h1>
-        <h2 v-if="favorito != ''">Favorito: {{ favorito }}</h2>
+        <h2 v-if="favorito !== ''">Favorito: {{ favorito }}</h2>
         <hr />
         <div>
             <p v-for="deporte in deportes" :key="deporte">
