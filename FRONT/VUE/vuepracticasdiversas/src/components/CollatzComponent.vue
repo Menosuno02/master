@@ -20,12 +20,12 @@ export default {
     },
     methods: {
         calcCollatz() {
-            let numero = this.num;
+            let num = this.num;
             this.collatz = [];
-            while (numero >= 1) {
-                this.collatz.push(numero)
-                if (numero == 1) break;
-                (numero % 2 == 0) ? numero /= 2 : numero = numero * 3 + 1;
+            while (num >= 1) {
+                this.collatz.push(num)
+                if (num == 1) break;
+                (num % 2 == 0) ? num /= 2 : num = num * 3 + 1;
             }
         }
     }
