@@ -12,8 +12,8 @@ app.config.globalProperties.$filters = {
             return "<span style='color: red'>" + numero + "</span>";
     },
 
-    getMultiplicacion(numero, mult) {
-        return (numero + " x " + mult + " = " + numero * mult);
+    getMultiplicacion(num, mult) {
+        return num + " x " + mult + " = " + num * mult;
     }
 }
 

@@ -31,11 +31,12 @@ export default {
     },
     methods: {
         calcTablaMult() {
-            this.html = "";
+            this.html = "<table border='1'><tbody>";
             for (let i = 1; i <= 10; i++)
-                this.html +=
-                    this.num + " x " + i + " = "
-                    + this.num * i + "<br/>";
+                this.html += "<tr><td>" +
+                    this.num + " x " + i + "</td><td> "
+                    + this.num * i + "</td></tr>";
+            this.html += "</tbody></table>"
         }
     }
 }
