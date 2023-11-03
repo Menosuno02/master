@@ -1,8 +1,10 @@
-import PadreDeporte from "./PadreDeporte.vue"
+import PadreDeportes from "./PadreDeporte.vue"
 import PadreNumeros from "./PadreNumeros.vue"
 import HomeComponent from "./HomeComponent.vue"
 import ComicsComponent from "./ComicsComponent.vue"
 import SeleccionMultiple from "./SeleccionMultiple.vue"
+import SumaCheckbox from "./SumaCheckbox.vue"
+import NumeroDoble from "./NumeroDoble.vue"
 
 import { createRouter, createWebHistory } from "vue-router";
 
@@ -11,7 +13,7 @@ const Rutas = [
         path: "/", component: HomeComponent
     },
     {
-        path: "/deportes", component: PadreDeporte
+        path: "/deportes", component: PadreDeportes
     },
     {
         path: "/numeros", component: PadreNumeros
@@ -21,6 +23,12 @@ const Rutas = [
     },
     {
         path: "/select", component: SeleccionMultiple
+    },
+    {
+        path: "/checkbox", component: SumaCheckbox
+    },
+    {
+        path: "/numdoble/:numero?", component: NumeroDoble
     }
 ];
 
