@@ -8,12 +8,26 @@
             <h2>Número: {{ numero }}</h2>
             <h2>Doble: {{ doble }}</h2>
         </div>
+        <button @click="redirectToHome()">Volver a Home</button>
     </div>
 </template>
 
 <script>
 export default {
     name: "NumeroDoble",
+    watch: {
+        "$route.params.numero"(nextVal, oldVal) {
+            if (nextVal !== oldVal) {
+                this.numero = parseInt(this.$route.params.numero);
+                this.doble = this.numero * 2;
+            }
+        }
+    },
+    methods: {
+        redirectToHome() {
+            this.$router.push("/");
+        }
+    },
     data() {
         return {
             mensaje: null,
@@ -31,6 +45,6 @@ export default {
             this.numero = parseInt(this.$route.params.numero);
             this.doble = this.numero * 2;
         }
-    }
+    },
 }
 </script>

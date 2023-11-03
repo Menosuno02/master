@@ -5,6 +5,7 @@ import ComicsComponent from "./ComicsComponent.vue"
 import SeleccionMultiple from "./SeleccionMultiple.vue"
 import SumaCheckbox from "./SumaCheckbox.vue"
 import NumeroDoble from "./NumeroDoble.vue"
+import TablaMultiplicarRouter from "./TablaMultiplicarRouter.vue"
 
 import { createRouter, createWebHistory } from "vue-router";
 
@@ -29,6 +30,9 @@ const Rutas = [
     },
     {
         path: "/numdoble/:numero?", component: NumeroDoble
+    },
+    {
+        path: "/tablamult/:numero", component: TablaMultiplicarRouter
     }
 ];
 
