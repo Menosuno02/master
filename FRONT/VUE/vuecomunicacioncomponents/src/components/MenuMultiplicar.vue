@@ -1,6 +1,6 @@
 <template>
     <div id="menu">
-        <router-link v-for="num in nums" :key="num" :to="'/tablamult/' + num">Tabla Multiplicar {{ num }}</router-link>
+        <router-link v-for="num in nums" :key="num" :to="'/tablamult/' + num">Tabla Mult {{ num }}</router-link>
     </div>
 </template>
 
