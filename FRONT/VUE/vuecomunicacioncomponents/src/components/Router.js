@@ -2,6 +2,7 @@ import PadreDeporte from "./PadreDeporte.vue"
 import PadreNumeros from "./PadreNumeros.vue"
 import HomeComponent from "./HomeComponent.vue"
 import ComicsComponent from "./ComicsComponent.vue"
+import SeleccionMultiple from "./SeleccionMultiple.vue"
 
 import { createRouter, createWebHistory } from "vue-router";
 
@@ -17,6 +18,9 @@ const Rutas = [
     },
     {
         path: "/comics", component: ComicsComponent
+    },
+    {
+        path: "/select", component: SeleccionMultiple
     }
 ];
 

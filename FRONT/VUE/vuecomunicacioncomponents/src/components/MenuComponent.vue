@@ -4,6 +4,7 @@
         <router-link to="/deportes">Deportes</router-link>
         <router-link to="/numeros">Números</router-link>
         <router-link to="/comics">Comics</router-link>
+        <router-link to="/select">SelectMult</router-link>
     </div>
 </template>
 

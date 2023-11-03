@@ -1,42 +1,25 @@
 <template>
     <div>
-        <h1>Cómics</h1>
-        <form @submit.prevent="crearComic()">
-            <label>Título: </label>
-            <input type="text" v-model="comicForm.titulo" /><br />
-            <label>Imagen: </label>
-            <input type="text" v-model="comicForm.imagen" /><br />
-            <label>Descripción: </label>
-            <input type="text" v-model="comicForm.descripcion" /><br />
-            <label>Año: </label>
-            <input type="number" v-model="comicForm.year" /><br />
-            <button>Crear cómic</button>
-        </form>
-        <div v-if="favorito" style="background-color: darkgoldenrod; color: white;">
-            <h2>Favorito: {{ favorito.titulo }}</h2>
-        </div>
-        <hr />
-        <div v-for="(comic, index) in comics" :key="comic" id="comics">
-            <ComicComponent :comic="comic" :index="index" @seleccionarFav="seleccionarFav" @eliminarComic="eliminarComic" />
+        <h1>Selección multiple</h1>
+        <select v-model="selectMultiple" multiple :size="comics.length">
+            <option :value="comic.titulo" v-for="comic in comics" :key="comic">
+                {{ comic.titulo }}
+            </option>
+        </select>
+        <div v-if="selectMultiple.length > 0">
+            <h2 v-for="selected in selectMultiple" :key="selected">
+                {{ selected }}
+            </h2>
         </div>
     </div>
 </template>
 
 <script>
-import ComicComponent from './ComicComponent.vue';
-
 export default {
-    name: "ComicsComponent",
-    components: { ComicComponent },
+    name: "SeleccionMultiple",
     data() {
         return {
-            comicForm: {
-                titulo: "",
-                imagen: "",
-                descripcion: "",
-                year: 0
-            },
-            favorito: null,
+            selectMultiple: [],
             comics: [
                 {
                     titulo: "Spiderman",
@@ -83,25 +66,5 @@ export default {
             ]
         }
     },
-    methods: {
-        seleccionarFav(comic) {
-            this.favorito = comic;
-        },
-        eliminarComic(index) {
-            this.comics.splice(index, 1);
-        },
-        crearComic() {
-            this.comics.push({
-                titulo: this.comicForm.titulo,
-                descripcion: this.comicForm.descripcion,
-                imagen: this.comicForm.imagen,
-                year: this.comicForm.year
-            });
-        }
-    }
 }
 </script>
-
-<style>
-@import "../assets/css/estilocomics.css";
-</style>
