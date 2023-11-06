@@ -36,7 +36,10 @@
             >
               Modificar
             </router-link>
-            <button class="btn btn-danger btn-sm" @click="deleteDepartamento()">
+            <button
+              class="btn btn-danger btn-sm"
+              @click="deleteDepartamento(dept.idDepartamento)"
+            >
               Eliminar
             </button>
           </td>
@@ -64,7 +67,31 @@ export default {
     });
   },
   methods: {
-    deleteDepartamento() {},
+    /*
+    deleteDepartamento(id) {
+      Swal.fire({
+        title: "Vas a borrar el departamento" + id,
+        text: "¿Estás seguro? No podrás revertir",
+        // icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Borrar",
+        cancelButtonText: "Cancelar",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          service.deleteDepartamento(id).then((result) => {
+            console.log(result);
+            Swal.fire({
+              title: "Departamento" + id + " borrado",
+              text: "El departamento fue eliminado con éxito",
+              icon: "success",
+            });
+          });
+        }
+      });
+    },
+    */
   },
 };
 </script>
