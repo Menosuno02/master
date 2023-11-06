@@ -2,7 +2,7 @@
   <div>
     <h1>API Coches</h1>
     <hr class="border border-primary opacity-100" />
-    <div v-for="coche in coches" :key="coche">
+    <div v-for="coche in coches" :key="coche" class="mt-3">
       <h2>{{ coche.marca }} {{ coche.modelo }}</h2>
       <h3>{{ coche.conductor }}</h3>
       <img :src="coche.imagen" width="200" height="150" />
@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import axios from "axios";
-import Global from "../Global";
+import ServiceCoches from "../services/ServiceCoches";
+const servicio = new ServiceCoches();
 
 export default {
   name: "CochesComponent",
@@ -22,10 +22,12 @@ export default {
     };
   },
   mounted() {
-    let url = Global.urlApiCoches;
-    let request = "webresources/coches";
-    axios.get(url + request).then((response) => {
-      this.coches = response.data;
+    // una promesa no es un método, es un objeto
+    servicio.getCoches().then((result) => {
+      this.coches = result;
+    });
+    servicio.getMetodoParametros("dato").then((result) => {
+      console.log(result);
     });
   },
 };

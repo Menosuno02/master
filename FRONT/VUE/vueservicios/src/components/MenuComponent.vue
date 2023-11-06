@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-md bg-primary" data-bs-theme="dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
+      <router-link class="navbar-brand" to="/">Home</router-link>
       <button
         class="navbar-toggler"
         type="button"
@@ -16,7 +16,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <router-link class="nav-link" to="/coches">Coches</router-link>
+            <router-link class="nav-link" to="/coches"> Coches </router-link>
           </li>
           <li class="nav-item">
             <router-link class="nav-link" to="/empleados">
@@ -48,8 +48,8 @@
 </template>
 
 <script>
-import Global from "../Global";
-import axios from "axios";
+import ServiceEmpleados from "@/services/ServiceEmpleados";
+const servicio = new ServiceEmpleados();
 
 export default {
   name: "MenuComponent",
@@ -59,10 +59,8 @@ export default {
     };
   },
   mounted() {
-    let url = Global.urlApiEmpleados;
-    let request = "api/Empleados/oficios";
-    axios.get(url + request).then((response) => {
-      this.oficios = response.data;
+    servicio.getOficios().then((result) => {
+      this.oficios = result;
     });
   },
 };
