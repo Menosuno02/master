@@ -1,16 +1,15 @@
 <template>
-  <CochesComponent />
+  <MenuComponent />
+  <router-view class="mt-5 container-fluid"></router-view>
 </template>
 
 <script>
-import CochesComponent from './components/CochesComponent.vue';
+import MenuComponent from "./components/MenuComponent.vue";
 
 export default {
-  name: 'App',
-  components: {
-    CochesComponent
-  }
-}
+  name: "App",
+  components: { MenuComponent },
+};
 </script>
 
 <style>
