@@ -34,7 +34,8 @@
       <button class="btn btn-primary mt-3 w-100">Modificar personaje</button>
     </form>
     <img v-else src="../assets/images/loading.gif" />
-    <div class="row mt-3">
+    <div class="row mt-3 container-fluid" v-if="datosSerie || datosPersonaje">
+      <hr class="border border-primary opacity-100" />
       <div class="col-6" v-if="datosSerie">
         <h2>{{ datosSerie.nombre }}</h2>
         <img :src="datosSerie.imagen" class="w-100" />
