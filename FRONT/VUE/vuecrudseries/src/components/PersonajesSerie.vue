@@ -9,7 +9,7 @@
       >
         Volver
       </router-link>
-      <table class="table">
+      <table class="table mt-3">
         <thead class="border-primary">
           <tr>
             <th>Personaje</th>

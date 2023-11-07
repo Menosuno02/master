@@ -3,7 +3,9 @@
     <div class="card" v-if="serie">
       <img class="card-img-top" :src="serie.imagen" />
       <div class="card-body">
-        <h5 class="card-title fw-bold">{{ serie.nombre }}</h5>
+        <h5 class="card-title fw-bold">
+          {{ serie.nombre }} ({{ serie.anyo }})
+        </h5>
         <p class="card-text">Puntuación IMDB: {{ serie.puntuacion }}</p>
         <router-link
           class="btn btn-success w-100"
