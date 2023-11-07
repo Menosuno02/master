@@ -1,5 +1,8 @@
 <template>
-  <nav class="navbar navbar-expand-md bg-primary" data-bs-theme="dark">
+  <nav
+    class="navbar navbar-expand-md bg-primary bg-gradient"
+    data-bs-theme="dark"
+  >
     <div class="container-fluid">
       <router-link class="navbar-brand" to="/">CRUD Coches</router-link>
       <button

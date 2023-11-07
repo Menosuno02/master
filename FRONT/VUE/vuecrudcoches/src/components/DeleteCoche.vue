@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Eliminando Coche...</h1>
+    <h1>Eliminando Coche {{ this.$route.params.id }}</h1>
     <img src="../assets/images/loading.gif" />
   </div>
 </template>

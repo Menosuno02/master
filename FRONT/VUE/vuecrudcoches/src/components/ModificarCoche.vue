@@ -2,7 +2,7 @@
   <div>
     <h1>Modificar Coche {{ this.$route.params.id }}</h1>
     <hr class="border border-primary opacity-100" />
-    <form v-if="coche" @submit.prevent="updateCoche()">
+    <form v-if="coche" @submit.prevent="updateCoche()" class="w-75 mx-auto">
       <div class="mt-3">
         <label class="form-label">ID</label>
         <input

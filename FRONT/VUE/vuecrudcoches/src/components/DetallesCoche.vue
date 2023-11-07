@@ -6,7 +6,7 @@
       <img class="card-img-top" :src="coche.imagen" />
       <div class="card-body">
         <h5 class="card-title fw-bold">{{ coche.marca }} {{ coche.modelo }}</h5>
-        <p class="card-text">Conductor: {{ coche.conductor }}</p>
+        <p class="card-text">Conducido por {{ coche.conductor }}</p>
       </div>
     </div>
     <img v-else src="../assets/images/loading.gif" />

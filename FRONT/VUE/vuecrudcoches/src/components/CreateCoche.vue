@@ -2,9 +2,9 @@
   <div>
     <h1>Crear Coche</h1>
     <hr class="border border-primary opacity-100" />
-    <form @submit.prevent="createCoche()">
+    <form @submit.prevent="createCoche()" class="w-75 mx-auto">
       <div class="mt-3">
-        <label class="form-label">ID</label>
+        <label class="form-label">ID (se asigna solo en la API)</label>
         <input
           type="number"
           class="form-control"
