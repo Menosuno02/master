@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg bg-success" data-bs-theme="dark">
+  <nav class="navbar navbar-expand-md bg-success" data-bs-theme="dark">
     <div class="container-fluid">
       <NuxtLink class="navbar-brand" to="/">Prueba Nuxt</NuxtLink>
       <button

@@ -13,6 +13,7 @@
     "@formkit/auto-animate": "^0.8.1",
     "@nuxt/devtools": "latest",
     "@nuxt/image": "^1.0.0",
+    "@nuxtjs/color-mode": "^3.3.0",
     "nuxt": "^3.8.1",
     "vue": "^3.3.8",
     "vue-router": "^4.2.5"

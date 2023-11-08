@@ -7,5 +7,5 @@ export default defineNuxtConfig({
     'bootstrap/dist/css/bootstrap.min.css',
   ],
 
-  modules: ['@nuxt/image', '@formkit/auto-animate'],
+  modules: ['@nuxt/image', '@nuxtjs/color-mode'],
 })

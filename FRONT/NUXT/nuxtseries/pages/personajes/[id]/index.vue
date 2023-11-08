@@ -12,7 +12,9 @@
       <tbody>
         <tr v-for="person in personajes">
           <td>{{ person.nombre }}</td>
-          <td><NuxtImg :src="person.imagen" height="200" /></td>
+          <td>
+            <NuxtImg :src="person.imagen" height="200" />
+          </td>
         </tr>
       </tbody>
     </table>
