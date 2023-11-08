@@ -1,0 +1,26 @@
+<div>
+  <h1>Tabla Multiplicar</h1>
+  <form #tablaForm="ngForm">
+    <label>Número: </label>
+    <input type="text" name="controlnumero" #controlnumero [required] />
+    <br />
+    <button [disabled]="!tablaForm.valid" (click)="tablaMultiplicar()">
+      Calcular Tabla
+    </button>
+  </form>
+  <table *ngIf="html != ''" border="1">
+    <thead>
+      <tr>
+        <td>Operación</td>
+        <td>Resultado</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let operacion of operaciones; let i = index">
+        <td>{{ operacion }}</td>
+        <td>{{ resultados[i] }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div [innerHTML]="html"></div>
+</div>
