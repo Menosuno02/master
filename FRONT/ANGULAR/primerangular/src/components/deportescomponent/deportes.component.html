@@ -1,1 +1,28 @@
-<div></div>
+<div>
+  <h1>Ejemplo directivas Angular</h1>
+  <ul>
+    <li
+      *ngFor="let num of numeros"
+      [class.par]="num % 2 == 0"
+      [class.impar]="num % 2 != 0"
+    >
+      {{ num }}
+    </li>
+  </ul>
+
+  <h2>Número deportes: {{ sports.length }}</h2>
+  <div *ngIf="sports.length < 7; then condiciontrue; else condicionelse"></div>
+  <h4 style="color: purple">El primer deporte es {{ sports[0] }}</h4>
+  <ul>
+    <li *ngFor="let deporte of sports; let i = index">
+      {{ i }}: {{ deporte }}
+    </li>
+  </ul>
+</div>
+
+<ng-template #condiciontrue>
+  <p style="color: green; font-weight: bold">Tienes menos de 7 deportes</p>
+</ng-template>
+<ng-template #condicionelse>
+  <p style="color: red; font-weight: bold">Tienes 7 deportes o más</p>
+</ng-template>

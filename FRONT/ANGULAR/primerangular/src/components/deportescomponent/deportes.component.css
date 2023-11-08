@@ -1,0 +1,19 @@
+.par {
+  background-color: green;
+  font-weight: bold;
+}
+
+.impar {
+  background-color: red;
+  font-weight: bold;
+}
+
+.par,
+.impar {
+  font-weight: bold;
+  color: white;
+}
+
+li::marker {
+  color: black;
+}
