@@ -1,0 +1,47 @@
+<div>
+  <h1>Formularios Binding Model</h1>
+  <h2>{{ mensaje }}</h2>
+  <form #userForm="ngForm" (ngSubmit)="recibirDatos()">
+    <label>Nombre: </label>
+    <input
+      name="controlnombre"
+      #controlnombre="ngModel"
+      [(ngModel)]="user.nombre"
+      type="text"
+      required
+    />
+    <span style="color: red" *ngIf="!controlnombre.valid">
+      El nombre es obligatorio
+    </span>
+    <br />
+    <label>Apellidos: </label>
+    <input
+      name="controlapellidos"
+      #controlapellidos="ngModel"
+      [(ngModel)]="user.apellidos"
+      type="text"
+      pattern="^[A-Z]{1}[a-z]{2,}"
+    />
+    <span
+      style="color: red"
+      *ngIf="!controlapellidos.valid && controlapellidos.touched"
+    >
+      El apellido debe comenzar con mayúscula y tener mínimo 3 caracteres
+    </span>
+    <br />
+    <label>Edad: </label>
+    <input
+      name="controledad"
+      #controledad="ngModel"
+      [(ngModel)]="user.edad"
+      type="number"
+    /><br />
+    <button [disabled]="!userForm.valid">Enviar datos</button>
+  </form>
+  <br />
+  <div>
+    <h2>Nombre: {{ user.nombre }}</h2>
+    <h2>Apellidos: {{ user.apellidos }}</h2>
+    <h2>Edad: {{ user.edad }}</h2>
+  </div>
+</div>
