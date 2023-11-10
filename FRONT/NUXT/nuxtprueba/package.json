@@ -10,10 +10,8 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "@formkit/auto-animate": "^0.8.1",
     "@nuxt/devtools": "latest",
     "@nuxt/image": "^1.0.0",
-    "@nuxtjs/color-mode": "^3.3.0",
     "@nuxtjs/google-fonts": "^3.0.2",
     "nuxt": "^3.8.1",
     "vue": "^3.3.8",
