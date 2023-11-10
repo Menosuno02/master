@@ -1,9 +1,3 @@
-<script>
-export default {
-  name: "MenuComponent",
-};
-</script>
-
 <script setup>
 import Global from "~/Global";
 const { data: armas } = await useFetch(Global.urlApi + "weapons");
@@ -12,7 +6,15 @@ const { data: armas } = await useFetch(Global.urlApi + "weapons");
 <template>
   <nav class="navbar navbar-expand-md bg-danger">
     <div class="container-fluid">
-      <span class="navbar-brand">Valorant Nuxt</span>
+      <span class="navbar-brand">
+        <img
+          src="/images/valoranticon.jpg"
+          width="30"
+          height="30"
+          class="me-2"
+        />
+        Valorant Nuxt
+      </span>
       <button
         class="navbar-toggler"
         type="button"
