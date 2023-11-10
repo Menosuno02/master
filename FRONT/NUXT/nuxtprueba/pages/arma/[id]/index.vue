@@ -1,12 +1,21 @@
+<script setup>
+import Global from "~/Global";
+let route = useRoute();
+const { data: arma } = await useFetch(
+  Global.urlApi + "weapons/" + route.params.id,
+  { query: { language: "es-ES" } }
+);
+</script>
+
 <template>
   <div v-if="arma.data">
-    <div class="card w-50 mx-auto">
-      <NuxtImg
-        class="card-img-top w-100 mx-auto"
-        :src="arma.data.displayIcon"
-        v-if="arma.data.displayIcon"
-      />
+    <div class="card w-50 mx-auto mb-3">
       <div class="card-body">
+        <NuxtImg
+          class="card-img-top w-100 mx-auto"
+          :src="arma.data.displayIcon"
+          v-if="arma.data.displayIcon"
+        />
         <h5 class="card-title mt-3" v-if="arma.data.displayName">
           {{ arma.data.displayName }}
         </h5>
@@ -20,7 +29,7 @@
         </div>
       </div>
     </div>
-    <h2>Skins</h2>
+    <h1>Skins</h1>
     <hr class="border border-danger opacity-100" />
     <div class="row" v-if="arma.data.skins">
       <div
@@ -30,7 +39,7 @@
         )"
         :key="skin"
       >
-        <div class="card border-danger border-2 mb-2">
+        <div class="card mb-3">
           <div class="card-body">
             <NuxtImg :src="skin.chromas[0].fullRender" class="card-img-top" />
             <h5 class="card-title mt-3" v-if="skin.displayName">
@@ -42,13 +51,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import Global from "~/Global";
-let route = useRoute();
-let skins = ref([]);
-const { data: arma } = await useFetch(
-  Global.urlApi + "weapons/" + route.params.id,
-  { query: { language: "es-ES" } }
-);
-</script>

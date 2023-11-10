@@ -1,6 +1,13 @@
+<script setup>
+import Global from "~/Global";
+const { data: agentes } = await useFetch(Global.urlApi + "agents", {
+  query: { language: "es-ES", isPlayableCharacter: "true" },
+});
+</script>
+
 <template>
   <div>
-    <h1>Página principal</h1>
+    <NuxtImg src="/images/valorant.png" class="w-50 d-block mx-auto" />
     <hr class="border border-danger opacity-100" />
     <div class="container text-center mt-3" v-if="agentes">
       <div class="row">
@@ -11,9 +18,12 @@
               :src="agente.killfeedPortrait"
             />
             <div class="card-body">
-              <h5 class="card-title">
+              <h3
+                class="card-title mb-3 text-uppercase fs-2"
+                style="font-family: 'Anton', sans-serif"
+              >
                 {{ agente.displayName }}
-              </h5>
+              </h3>
               <NuxtLink
                 class="btn btn-danger w-100 btn-sm"
                 :to="'/agente/' + agente.uuid"
@@ -27,11 +37,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import Global from "../Global";
-
-const { data: agentes } = await useFetch(Global.urlApi + "agents", {
-  query: { language: "es-ES", isPlayableCharacter: "true" },
-});
-</script>

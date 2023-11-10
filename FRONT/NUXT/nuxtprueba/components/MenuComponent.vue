@@ -1,7 +1,18 @@
+<script>
+export default {
+  name: "MenuComponent",
+};
+</script>
+
+<script setup>
+import Global from "~/Global";
+const { data: armas } = await useFetch(Global.urlApi + "weapons");
+</script>
+
 <template>
-  <nav class="navbar navbar-expand-md bg-danger" data-bs-theme="dark">
+  <nav class="navbar navbar-expand-md bg-danger">
     <div class="container-fluid">
-      <NuxtLink class="navbar-brand" to="/">Valorant Nuxt</NuxtLink>
+      <span class="navbar-brand">Valorant Nuxt</span>
       <button
         class="navbar-toggler"
         type="button"
@@ -47,14 +58,3 @@
     </div>
   </nav>
 </template>
-
-<script>
-export default {
-  name: "MenuComponent",
-};
-</script>
-
-<script setup>
-import Global from "~/Global";
-const { data: armas } = await useFetch(Global.urlApi + "weapons");
-</script>

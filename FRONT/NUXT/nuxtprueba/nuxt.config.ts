@@ -3,7 +3,20 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
 
+  app: {
+    head: {
+      title: "Valorant Nuxt",
+    },
+  },
+
   css: ["bootstrap/dist/css/bootstrap.min.css"],
+
+  googleFonts: {
+    families: {
+      Anton: true,
+      Barlow: true,
+    },
+  },
 
   /*
   app: {
@@ -29,5 +42,5 @@ export default defineNuxtConfig({
   },
   */
 
-  modules: ["@nuxt/image"],
+  modules: ["@nuxt/image", "@nuxtjs/google-fonts"],
 });
