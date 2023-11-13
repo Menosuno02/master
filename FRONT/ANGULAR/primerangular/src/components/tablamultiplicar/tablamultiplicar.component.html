@@ -8,7 +8,7 @@
       Calcular Tabla
     </button>
   </form>
-  <table *ngIf="html != ''" border="1">
+  <table *ngIf="resultados.length > 0" border="1">
     <thead>
       <tr>
         <td>Operación</td>
@@ -16,9 +16,9 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let operacion of operaciones; let i = index">
-        <td>{{ operacion }}</td>
-        <td>{{ resultados[i] }}</td>
+      <tr *ngFor="let resultado of resultados; let i = index">
+        <td>{{ numero }} x {{ i + 1 }}</td>
+        <td>{{ resultado }}</td>
       </tr>
     </tbody>
   </table>

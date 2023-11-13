@@ -6,21 +6,19 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 })
 export class TablaMultiplicarComponent {
   @ViewChild('controlnumero') controlnumero!: ElementRef;
-  public operaciones: string[] = [];
   public resultados: number[] = [];
   public html: string = '';
+  public numero: number = 0;
 
   constructor() {}
 
   tablaMultiplicar(): void {
-    this.operaciones = [];
     this.resultados = [];
     this.html = '';
-    let numero: number = parseInt(this.controlnumero.nativeElement.value);
+    this.numero = parseInt(this.controlnumero.nativeElement.value);
     for (let i: number = 1; i <= 10; i++) {
-      this.html += numero + ' x ' + i + ' = ' + numero * i + '<br/>';
-      this.operaciones.push(numero + ' x ' + i);
-      this.resultados.push(numero * i);
+      this.html += this.numero + ' x ' + i + ' = ' + this.numero * i + '<br/>';
+      this.resultados.push(this.numero * i);
     }
   }
 }
