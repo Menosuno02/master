@@ -1,0 +1,6 @@
+<div *ngIf="producto">
+  <h1>{{ producto.nombre }}</h1>
+  <h2>Precio: {{ producto.precio }}</h2>
+  <img [src]="producto.imagen" width="200" height="200" />
+  <br /><button (click)="volverLista()">Volver a lista productos</button>
+</div>

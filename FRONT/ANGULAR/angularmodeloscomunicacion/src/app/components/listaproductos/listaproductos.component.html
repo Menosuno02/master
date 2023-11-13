@@ -1,0 +1,6 @@
+<div>
+  <div *ngFor="let producto of productos">
+    <h2>{{ producto.nombre }}</h2>
+    <button (click)="mostrarDetalles(producto)">Mostrar detalles</button>
+  </div>
+</div>
