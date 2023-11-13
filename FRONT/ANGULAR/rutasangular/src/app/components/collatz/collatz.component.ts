@@ -14,12 +14,14 @@ export class CollatzComponent implements OnInit {
 
   ngOnInit(): void {
     this._activeRoute.params.subscribe((params: Params) => {
-      this.num = params['numero'];
-      let numero = this.num;
-      while (numero >= 1) {
-        this.collatz.push(numero);
-        if (numero == 1) break;
-        numero % 2 == 0 ? (numero /= 2) : (numero = numero * 3 + 1);
+      if (params['numero']) {
+        this.num = params['numero'];
+        let numero = this.num;
+        while (numero >= 1) {
+          this.collatz.push(numero);
+          if (numero == 1) break;
+          numero % 2 == 0 ? (numero /= 2) : (numero = numero * 3 + 1);
+        }
       }
     });
   }
