@@ -9,6 +9,9 @@ import { MusicaComponent } from './components/musica/musica.component';
 import { CineComponent } from './components/cine/cine.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { Error404Component } from './components/error404/error404.component';
+import { NumeroDobleComponent } from './components/numerodoble/numerodoble.component';
+import { MenuCollatzComponent } from './components/menucollatz/menucollatz.component';
+import { CollatzComponent } from './components/collatz/collatz.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +21,9 @@ import { Error404Component } from './components/error404/error404.component';
     CineComponent,
     MenuComponent,
     Error404Component,
+    NumeroDobleComponent,
+    MenuCollatzComponent,
+    CollatzComponent,
   ],
   imports: [BrowserModule, routing],
   providers: [appRoutingProvider],

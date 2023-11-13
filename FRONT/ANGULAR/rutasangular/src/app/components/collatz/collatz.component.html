@@ -1,0 +1,9 @@
+<div *ngIf="num">
+  <button (click)="volverMenu()">Volver a menú de Collatz</button>
+  <h2>Collatz de {{ num }}</h2>
+  <ul>
+    <li *ngFor="let numero of collatz">
+      {{ numero }}
+    </li>
+  </ul>
+</div>
