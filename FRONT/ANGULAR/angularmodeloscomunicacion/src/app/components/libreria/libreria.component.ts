@@ -8,7 +8,7 @@ import { Comic } from 'src/app/models/Comic';
 })
 export class LibreriaComponent {
   public comics!: Comic[];
-  public favorito!: Comic;
+  public favorito?: Comic;
 
   @ViewChild('controltitulo') controltitulo!: ElementRef;
   @ViewChild('controlimg') controlimg!: ElementRef;
@@ -54,25 +54,23 @@ export class LibreriaComponent {
     );
   }
 
-  modificarComic(event: any, comicModificar: Comic) {
-    let titulo = this.controltitulo.nativeElement.value;
-    if (titulo === '') titulo = comicModificar.titulo;
-    let img = this.controlimg.nativeElement.value;
-    if (img === '') img = comicModificar.imagen;
-    let desc = this.controldesc.nativeElement.value;
-    if (desc === '') desc = comicModificar.descripcion;
-    this.comics = this.comics.map((comic) =>
-      comic.titulo === comicModificar.titulo
-        ? new Comic(titulo, img, desc)
+  modificarComic(event: any, comicUpdate: Comic) {
+    let descripcion = (this.comics = this.comics.map((comic) =>
+      comic.titulo === comicUpdate.titulo
+        ? new Comic(
+            this.controltitulo.nativeElement.value || comicUpdate.titulo,
+            this.controlimg.nativeElement.value || comicUpdate.imagen,
+            this.controldesc.nativeElement.value || comicUpdate.descripcion
+          )
         : comic
-    );
+    ));
   }
 
-  eliminarComic(event: any, comicEliminar: Comic) {
-    console.log(event);
+  eliminarComic(event: any, comicDelete: Comic) {
     this.comics = this.comics.filter(
-      (comic) => comic.titulo !== comicEliminar.titulo
+      (comic) => comic.titulo !== comicDelete.titulo
     );
+    if (this.favorito?.titulo === comicDelete.titulo) this.favorito = undefined;
   }
 
   selectFav(event: any, comic: Comic) {

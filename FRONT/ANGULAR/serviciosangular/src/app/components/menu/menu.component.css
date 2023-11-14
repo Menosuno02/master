@@ -1,0 +1,7 @@
+div > li {
+  display: inline;
+}
+
+div:has(li) {
+  margin: 10px;
+}
