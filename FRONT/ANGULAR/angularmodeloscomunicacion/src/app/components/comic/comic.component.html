@@ -1,0 +1,20 @@
+<div>
+  <h2>{{ comic.titulo }}</h2>
+  <img [src]="comic.imagen" width="100" height="150" />
+  <h3>{{ comic.descripcion }}</h3>
+  <button
+    (click)="modificarComicHijo($event)"
+    style="color: white; background-color: blue"
+  >
+    Modificar cómic
+  </button>
+  <br />
+  <button
+    (click)="eliminarComicHijo($event)"
+    style="color: white; background-color: red"
+  >
+    Eliminar cómic
+  </button>
+  <br />
+  <button (click)="selectFavHijo($event)">Marcar como fav</button>
+</div>

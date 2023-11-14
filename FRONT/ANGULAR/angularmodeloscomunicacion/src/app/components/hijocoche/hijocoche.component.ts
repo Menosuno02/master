@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Coche } from 'src/app/models/Coche';
 
 @Component({
@@ -7,12 +7,8 @@ import { Coche } from 'src/app/models/Coche';
   styleUrls: ['./hijocoche.component.css'],
 })
 export class HijococheComponent {
-  public coche!: Coche;
   public mensaje!: string;
-
-  constructor() {
-    this.coche = new Coche('Pontiac', 'Firebird', 250, 20, false);
-  }
+  @Input() coche!: Coche;
 
   comprobarEstado(): boolean {
     if (this.coche.estado) {
@@ -30,7 +26,7 @@ export class HijococheComponent {
     this.comprobarEstado();
   }
 
-  acelearCoche() {
+  acelearCoche(): void {
     if (!this.comprobarEstado()) alert('El coche está apagado');
     else this.coche.velocidad += this.coche.aceleracion;
   }
