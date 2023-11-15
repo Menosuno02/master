@@ -1,0 +1,35 @@
+<div>
+  <h1>Empleados por función</h1>
+  <hr class="border border-danger opacity-100" />
+  <select
+    *ngIf="funciones.length > 0"
+    class="form-select"
+    name="selectfuncion"
+    #selectfuncion
+    (change)="changeEmpleados()"
+  >
+    <option *ngFor="let funcion of funciones" [value]="funcion">
+      {{ funcion }}
+    </option>
+  </select>
+  <table class="table" *ngIf="empleados.length > 0">
+    <thead class="border-danger">
+      <tr>
+        <th>ID Empleado</th>
+        <th>Apellido</th>
+        <th>Función</th>
+        <th>Turno</th>
+        <th>Salario</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emple of empleados">
+        <td>{{ emple.idEmpleado }}</td>
+        <td>{{ emple.apellido }}</td>
+        <td>{{ emple.funcion }}</td>
+        <td>{{ emple.turno }}</td>
+        <td>{{ emple.salario }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
