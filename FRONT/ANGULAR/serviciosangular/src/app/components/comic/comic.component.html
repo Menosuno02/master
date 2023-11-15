@@ -1,20 +1,21 @@
-<div>
-  <h2>{{ comic.titulo }}</h2>
-  <img [src]="comic.imagen" width="100" height="150" />
-  <h3>{{ comic.descripcion }}</h3>
-  <button
-    (click)="modificarComicHijo($event)"
-    style="color: white; background-color: blue"
-  >
-    Modificar cómic
-  </button>
-  <br />
-  <button
-    (click)="eliminarComicHijo($event)"
-    style="color: white; background-color: red"
-  >
-    Eliminar cómic
-  </button>
-  <br />
-  <button (click)="selectFavHijo($event)">Marcar como fav</button>
+<div class="card">
+  <h2 class="card-title">{{ comic.titulo }}</h2>
+  <img
+    class="img-fluid mx-auto"
+    [src]="comic.imagen"
+    width="100"
+    height="150"
+  />
+  <div>
+    <h5 class="card-subtitle my-3">{{ comic.descripcion }}</h5>
+    <button class="btn btn-primary w-100" (click)="modificarComicHijo($event)">
+      Modificar cómic
+    </button>
+    <button class="btn btn-danger w-100" (click)="eliminarComicHijo($event)">
+      Eliminar cómic
+    </button>
+    <button class="btn btn-secondary w-100" (click)="selectFavHijo($event)">
+      Marcar como fav
+    </button>
+  </div>
 </div>

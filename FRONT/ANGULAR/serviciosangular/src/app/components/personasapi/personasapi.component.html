@@ -1,0 +1,22 @@
+<div>
+  <h1>Personas</h1>
+  <hr class="border border-danger opacity-100" />
+  <table *ngIf="personas" class="table">
+    <thead class="border-danger">
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Edad</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let persona of personas">
+        <td>{{ persona.IdPersona }}</td>
+        <td>{{ persona.Nombre }}</td>
+        <td>{{ persona.Email }}</td>
+        <td>{{ persona.Edad }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

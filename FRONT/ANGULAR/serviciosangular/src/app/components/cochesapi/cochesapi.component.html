@@ -1,0 +1,23 @@
+<div>
+  <h1>Coches</h1>
+  <table class="table" *ngIf="coches">
+    <thead class="border-danger">
+      <tr>
+        <th>ID</th>
+        <th>Marca</th>
+        <th>Modelo</th>
+        <th>Conductor</th>
+        <th>Imagen</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let coche of coches">
+        <td>{{ coche.idcoche }}</td>
+        <td>{{ coche.marca }}</td>
+        <td>{{ coche.modelo }}</td>
+        <td>{{ coche.conductor }}</td>
+        <td><img [src]="coche.imagen" width="200" height="150" /></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
