@@ -18,4 +18,11 @@ export class ServiceEmpleados {
     let request = 'api/Plantilla/PlantillaFuncion/' + funcion;
     return this._http.get(url + request);
   }
+
+  getEmpleadosMultiple(funciones: string[]): Observable<any> {
+    let url = environment.urlApiEmpleados;
+    let request = 'api/Plantilla/PlantillaFunciones?';
+    for (let funcion of funciones) request += 'funcion=' + funcion + '&';
+    return this._http.get(url + request);
+  }
 }

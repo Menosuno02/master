@@ -1,12 +1,14 @@
 <div>
-  <h1>Empleados por función</h1>
+  <h1>Empleados Mútliple</h1>
   <hr class="border border-danger opacity-100" />
   <select
     *ngIf="funciones.length > 0"
-    class="form-select mb-3"
+    class="form-select"
     name="selectfuncion"
     #selectfuncion
-    (change)="changeEmpleados()"
+    (change)="changeFuncion()"
+    multiple
+    [size]="funciones.length"
   >
     <option *ngFor="let funcion of funciones" [value]="funcion">
       {{ funcion }}
@@ -18,7 +20,6 @@
         <th>ID Empleado</th>
         <th>Apellido</th>
         <th>Función</th>
-        <th>Turno</th>
         <th>Salario</th>
       </tr>
     </thead>
@@ -27,7 +28,6 @@
         <td>{{ emple.idEmpleado }}</td>
         <td>{{ emple.apellido }}</td>
         <td>{{ emple.funcion }}</td>
-        <td>{{ emple.turno }}</td>
         <td>{{ emple.salario }}</td>
       </tr>
     </tbody>
