@@ -7,7 +7,7 @@ const { data: armas } = await useFetch(Global.urlApi + "weapons");
   <nav class="navbar navbar-expand-md bg-danger">
     <div class="container-fluid">
       <span class="navbar-brand">
-        <img
+        <NuxtImg
           src="/images/valoranticon.jpg"
           width="30"
           height="30"
