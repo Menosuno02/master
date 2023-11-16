@@ -1,7 +1,7 @@
 <div>
   <h1>Departamentos</h1>
   <hr class="border border-danger opacity-100" />
-  <table class="table mt-3" *ngIf="departamentos.length > 0">
+  <table class="table mt-3" *ngIf="departamentos">
     <thead class="border-danger">
       <tr>
         <th>ID Dept</th>
@@ -17,10 +17,29 @@
         <td>{{ dept.localidad }}</td>
         <td>
           <a class="btn btn-success btn-sm me-1">Detalles</a>
-          <a class="btn btn-primary btn-sm me-1">Modificar</a>
-          <a class="btn btn-danger btn-sm">Eliminar</a>
+          <a
+            class="btn btn-primary btn-sm me-1"
+            [routerLink]="[
+              '/update',
+              dept.idDepartamento,
+              dept.nombre,
+              dept.localidad
+            ]"
+            >Modificar</a
+          >
+          <a
+            class="btn btn-danger btn-sm"
+            (click)="deleteDepartamento(dept.idDepartamento)"
+          >
+            Eliminar
+          </a>
         </td>
       </tr>
     </tbody>
   </table>
+  <img
+    *ngIf="!departamentos"
+    class="d-block mx-auto"
+    src="../../../assets/images/loading.gif"
+  />
 </div>
