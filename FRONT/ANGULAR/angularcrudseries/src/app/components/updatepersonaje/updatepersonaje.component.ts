@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 export class UpdatepersonajeComponent implements OnInit {
   public series!: Serie[];
   public personajes!: Personaje[];
+  public serie!: Serie;
+  public personaje!: Personaje;
 
   @ViewChild('selectserie') selectSerie!: ElementRef;
   @ViewChild('selectpersonaje') selectPersonaje!: ElementRef;
@@ -21,19 +23,31 @@ export class UpdatepersonajeComponent implements OnInit {
   ngOnInit(): void {
     this._service.getSeries().subscribe((response) => {
       this.series = response;
-      this.selectSerie.nativeElement.value = this.series[0].idSerie;
     });
     this._service.getPersonajes().subscribe((response) => {
       this.personajes = response;
-      this.selectPersonaje.nativeElement.value = this.personajes[0].idPersonaje;
     });
   }
 
   modificarPersonaje(): void {
-    let serie = this.selectSerie.nativeElement.value;
-    let personaje = this.selectPersonaje.nativeElement.value;
+    let serie = parseInt(this.selectSerie.nativeElement.value);
+    let personaje = parseInt(this.selectPersonaje.nativeElement.value);
     this._service.updatePersonaje(serie, personaje).subscribe((response) => {
       this._router.navigate(['/personajes', serie]);
+    });
+  }
+
+  dataSerie(): void {
+    let serie = parseInt(this.selectSerie.nativeElement.value);
+    this._service.getSerie(serie).subscribe((response) => {
+      this.serie = response;
+    });
+  }
+
+  dataPersonaje(): void {
+    let personaje = parseInt(this.selectPersonaje.nativeElement.value);
+    this._service.getPersonaje(personaje).subscribe((response) => {
+      this.personaje = response;
     });
   }
 }

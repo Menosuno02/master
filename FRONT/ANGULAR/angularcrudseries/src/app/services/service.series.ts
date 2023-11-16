@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Serie } from '../models/Serie';
 import { Personaje } from '../models/Personaje';
 import { environment } from 'src/environments/environment.development';
 
@@ -35,15 +34,21 @@ export class ServiceSeries {
     return this._http.post(url + request, json, { headers: header });
   }
 
+  getPersonaje(idPersonaje: number): Observable<any> {
+    let url = environment.urlApi;
+    let request = 'api/Personajes/' + String(idPersonaje);
+    return this._http.get(url + request);
+  }
+
   getPersonajes(): Observable<any> {
     let url = environment.urlApi;
     let request = 'api/Personajes';
     return this._http.get(url + request);
   }
 
-  updatePersonaje(idSerie: string, idPersonaje: string): Observable<any> {
+  updatePersonaje(idSerie: number, idPersonaje: number): Observable<any> {
     let url = environment.urlApi;
-    let request = `api/Personajes/${idPersonaje}/${idSerie}`;
+    let request = `api/Personajes/${String(idPersonaje)}/${String(idSerie)}`;
     return this._http.put(url + request, '');
   }
 }

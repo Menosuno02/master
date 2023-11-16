@@ -14,7 +14,15 @@ import { CreatepersonajeComponent } from './components/createpersonaje/createper
 import { UpdatepersonajeComponent } from './components/updatepersonaje/updatepersonaje.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, MenuComponent, SerieComponent, PersonajesserieComponent, CreatepersonajeComponent, UpdatepersonajeComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    MenuComponent,
+    SerieComponent,
+    PersonajesserieComponent,
+    CreatepersonajeComponent,
+    UpdatepersonajeComponent,
+  ],
   imports: [BrowserModule, routing, FormsModule, HttpClientModule],
   providers: [appRoutingProvider, ServiceSeries],
   bootstrap: [AppComponent],
