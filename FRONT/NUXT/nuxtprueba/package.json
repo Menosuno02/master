@@ -13,12 +13,12 @@
     "@nuxt/devtools": "latest",
     "@nuxt/image": "^1.0.0",
     "@nuxtjs/google-fonts": "^3.0.2",
+    "@nuxtjs/web-vitals": "^0.2.6",
     "nuxt": "^3.8.1",
     "vue": "^3.3.8",
     "vue-router": "^4.2.5"
   },
   "dependencies": {
-    "@nuxtjs/web-vitals": "^0.2.6",
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.2",
     "sharp": "^0.32.6"
