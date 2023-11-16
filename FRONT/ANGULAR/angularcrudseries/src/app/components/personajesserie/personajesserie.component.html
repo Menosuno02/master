@@ -1,0 +1,28 @@
+<div *ngIf="personajes">
+  <h1>Personajes de {{ this.idSerie }}</h1>
+  <hr class="border border-danger opacity-100" />
+  <a class="btn btn-danger w-100 mb-3" [routerLink]="['/serie', this.idSerie]"
+    >Volver a serie</a
+  >
+  <table class="table">
+    <thead class="border-danger">
+      <tr>
+        <th>Nombre</th>
+        <th>Imagen</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let person of personajes">
+        <td>{{ person.nombre }}</td>
+        <td>
+          <img [src]="person.imagen" width="200" />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<img
+  *ngIf="!personajes"
+  class="mx-auto d-block"
+  src="../../../assets/images/loading.gif"
+/>

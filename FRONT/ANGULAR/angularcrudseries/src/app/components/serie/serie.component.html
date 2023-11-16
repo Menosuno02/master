@@ -1,0 +1,18 @@
+<div *ngIf="serie" class="card d-block mx-auto w-75">
+  <img class="card-img-top" [src]="serie.imagen" />
+  <div class="card-body">
+    <h5 class="card-title">{{ serie.nombre }}</h5>
+    <p class="card-text">IMDB: {{ serie.puntuacion }}</p>
+    <a
+      class="btn btn-success w-100"
+      [routerLink]="['/personajes', serie.idSerie]"
+    >
+      Personajes
+    </a>
+  </div>
+</div>
+<img
+  *ngIf="!serie"
+  class="d-block mx-auto"
+  src="../../../assets/images/loading.gif"
+/>

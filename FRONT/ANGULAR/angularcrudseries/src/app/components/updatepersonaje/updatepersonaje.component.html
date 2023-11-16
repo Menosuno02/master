@@ -1,0 +1,28 @@
+<div *ngIf="series && personajes">
+  <h1>Modificar personajes</h1>
+  <hr class="border border-danger opacity-100" />
+  <form #updateform="ngForm" (ngSubmit)="modificarPersonaje()">
+    <div class="mt-3">
+      <label class="form-label">Serie</label>
+      <select class="form-select" name="selectserie" #selectserie>
+        <option *ngFor="let serie of series" [value]="serie.idSerie">
+          {{ serie.nombre }}
+        </option>
+      </select>
+    </div>
+    <div class="mt-3">
+      <label class="form-label">Personaje</label>
+      <select class="form-select" name="selectpersonaje" #selectpersonaje>
+        <option *ngFor="let person of personajes" [value]="person.idPersonaje">
+          {{ person.nombre }}
+        </option>
+      </select>
+    </div>
+    <button class="btn btn-primary w-100 mt-3">Modificar personaje</button>
+  </form>
+</div>
+<img
+  *ngIf="!series || !personajes"
+  class="mx-auto d-block"
+  src="../../../assets/images/loading.gif"
+/>

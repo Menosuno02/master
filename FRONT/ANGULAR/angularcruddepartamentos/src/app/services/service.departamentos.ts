@@ -34,7 +34,7 @@ export class ServiceDepartamentos {
 
   deleteDepartamento(idDept: number): Observable<any> {
     let url = environment.urlApi;
-    let request = 'api/Departamentos/' + idDept;
+    let request = 'api/Departamentos/' + String(idDept);
     return this._http.delete(url + request);
   }
 }

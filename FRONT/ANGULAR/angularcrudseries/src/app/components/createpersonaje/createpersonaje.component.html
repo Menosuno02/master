@@ -1,0 +1,33 @@
+<div *ngIf="series">
+  <h1>Crear personaje</h1>
+  <hr class="border border-danger opacity-100" />
+  <form #createform="ngForm" (ngSubmit)="createPersonaje()">
+    <div class="mt-3">
+      <label class="form-label">Nombre</label>
+      <input
+        type="text"
+        class="form-control"
+        name="controlnombre"
+        #controlnombre
+      />
+    </div>
+    <div class="mt-3">
+      <label class="form-label">Imagen</label>
+      <input
+        type="text"
+        class="form-control"
+        name="controlimagen"
+        #controlimagen
+      />
+    </div>
+    <div class="mt-3">
+      <label class="form-label">Serie</label>
+      <select class="form-select" name="selectserie" #selectserie>
+        <option *ngFor="let serie of series" [value]="serie.idSerie">
+          {{ serie.nombre }}
+        </option>
+      </select>
+    </div>
+    <button class="btn btn-primary w-100 mt-3">Crear personaje</button>
+  </form>
+</div>

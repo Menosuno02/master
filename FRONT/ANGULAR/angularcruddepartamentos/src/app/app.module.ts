@@ -12,7 +12,13 @@ import { CreatedepartamentoComponent } from './components/createdepartamento/cre
 import { UpdatedepartamentoComponent } from './components/updatedepartamento/updatedepartamento.component';
 
 @NgModule({
-  declarations: [AppComponent, MenuComponent, HomeComponent, CreatedepartamentoComponent, UpdatedepartamentoComponent],
+  declarations: [
+    AppComponent,
+    MenuComponent,
+    HomeComponent,
+    CreatedepartamentoComponent,
+    UpdatedepartamentoComponent,
+  ],
   imports: [BrowserModule, routing, FormsModule, HttpClientModule],
   providers: [appRoutingProvider, ServiceDepartamentos],
   bootstrap: [AppComponent],
