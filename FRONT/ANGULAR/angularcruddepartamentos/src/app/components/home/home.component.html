@@ -1,0 +1,26 @@
+<div>
+  <h1>Departamentos</h1>
+  <hr class="border border-danger opacity-100" />
+  <table class="table mt-3" *ngIf="departamentos.length > 0">
+    <thead class="border-danger">
+      <tr>
+        <th>ID Dept</th>
+        <th>Nombre</th>
+        <th>Localidad</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let dept of departamentos">
+        <td>{{ dept.idDepartamento }}</td>
+        <td>{{ dept.nombre }}</td>
+        <td>{{ dept.localidad }}</td>
+        <td>
+          <a class="btn btn-success btn-sm me-1">Detalles</a>
+          <a class="btn btn-primary btn-sm me-1">Modificar</a>
+          <a class="btn btn-danger btn-sm">Eliminar</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
