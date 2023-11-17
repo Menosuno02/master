@@ -49,6 +49,6 @@ export class ServiceSeries {
   updatePersonaje(idSerie: number, idPersonaje: number): Observable<any> {
     let url = environment.urlApi;
     let request = `api/Personajes/${String(idPersonaje)}/${String(idSerie)}`;
-    return this._http.put(url + request, '');
+    return this._http.put(url + request, null);
   }
 }
