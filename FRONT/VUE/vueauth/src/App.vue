@@ -1,15 +1,12 @@
 <template>
-  <div class="container-fluid">
-    <HomeComponent />
+  <div class="container-fluid mt-3 mx-auto" style="width: 90%">
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HomeComponent from "./components/HomeComponent.vue";
-
 export default {
   name: "App",
-  components: { HomeComponent },
 };
 </script>
 
@@ -20,6 +17,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
