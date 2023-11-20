@@ -6,23 +6,25 @@ const { data: mapas } = await useFetch(Global.urlApi + "maps");
 const mapasFiltrar = ["District", "Kasbah", "Piazza", "The Range"];
 
 onMounted(() => {
-  let uuid = document
-    .querySelectorAll(".swiper-slide")[0]
-    .getAttribute("data-uuid");
-  changeMapaUuid(uuid);
+  changeMapaUuid();
 });
 
 async function changeMapa() {
-  let uuid = document
-    .querySelector(".swiper-slide-active")
-    .getAttribute("data-uuid");
-  await useFetch(Global.urlApi + "maps/" + uuid).then((response) => {
-    mapaElegido.value = response.data._rawValue.data;
+  await nextTick(async () => {
+    let uuid = document
+      .querySelector(".swiper-slide-active")
+      .getAttribute("data-uuid");
+    await useFetch(Global.urlApi + "maps/" + uuid).then((response) => {
+      mapaElegido.value = response.data._rawValue.data;
+    });
   });
 }
 
-async function changeMapaUuid(uuid) {
+async function changeMapaUuid() {
   await nextTick(async () => {
+    let uuid = document
+      .querySelectorAll(".swiper-slide")[0]
+      .getAttribute("data-uuid");
     await useFetch(Global.urlApi + "maps/" + uuid).then((response) => {
       mapaElegido.value = response.data._rawValue.data;
     });
@@ -43,7 +45,9 @@ async function changeMapaUuid(uuid) {
         <div class="col-4">
           <Swiper
             class="h-100 bg-opacity-25 bg-dark rounded-5"
+            :modules="[SwiperEffectCreative]"
             :slides-per-view="10"
+            :initial-slide="0"
             :direction="'vertical'"
             :centered-slides="true"
             :pagination="{
@@ -51,6 +55,7 @@ async function changeMapaUuid(uuid) {
             }"
             :slide-to-clicked-slide="true"
             @slide-change="changeMapa()"
+            @slider-move="changeMapa()"
           >
             <SwiperSlide
               class="h-10 d-flex justify-content-center align-items-center opacity-100"
