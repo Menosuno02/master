@@ -39,21 +39,21 @@ async function changeMapaUuid(uuid) {
     <Body>
       <h1 class="text-light">Mapas</h1>
       <hr class="border border-danger opacity-100" />
-      <div class="row pb-3">
+      <div class="row pb-5 mt-5">
         <div class="col-4">
           <Swiper
             class="h-100 bg-opacity-25 bg-dark rounded-5"
-            :slides-per-view="5"
-            :initial-slide="2"
+            :slides-per-view="10"
             :direction="'vertical'"
             :centered-slides="true"
             :pagination="{
               clickable: true,
             }"
+            :slide-to-clicked-slide="true"
             @slide-change="changeMapa()"
           >
             <SwiperSlide
-              class="h-20 d-flex justify-center justify-content-center align-items-center opacity-100"
+              class="h-10 d-flex justify-content-center align-items-center opacity-100"
               v-for="mapa in mapas.data.filter(
                 (mapa) => !mapasFiltrar.includes(mapa.displayName)
               )"
@@ -92,7 +92,12 @@ async function changeMapaUuid(uuid) {
   color: rgba(var(--bs-danger-rgb), var(--bs-text-opacity)) !important;
 }
 
-.h-20 {
-  height: 20% !important;
+.swiper-slide-active h1::before {
+  content: "▸ ";
+  display: inline-block;
+}
+
+.h-10 {
+  height: 10% !important;
 }
 </style>
