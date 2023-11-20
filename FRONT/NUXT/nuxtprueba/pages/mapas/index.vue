@@ -5,9 +5,27 @@ let titulo = ref("Valorant Nuxt | Mapa");
 const { data: mapas } = await useFetch(Global.urlApi + "maps");
 const mapasFiltrar = ["District", "Kasbah", "Piazza", "The Range"];
 
-async function changeMapa(uuid) {
+onMounted(() => {
+  let uuid = document
+    .querySelectorAll(".swiper-slide")[0]
+    .getAttribute("data-uuid");
+  changeMapaUuid(uuid);
+});
+
+async function changeMapa() {
+  let uuid = document
+    .querySelector(".swiper-slide-active")
+    .getAttribute("data-uuid");
   await useFetch(Global.urlApi + "maps/" + uuid).then((response) => {
     mapaElegido.value = response.data._rawValue.data;
+  });
+}
+
+async function changeMapaUuid(uuid) {
+  await nextTick(async () => {
+    await useFetch(Global.urlApi + "maps/" + uuid).then((response) => {
+      mapaElegido.value = response.data._rawValue.data;
+    });
   });
 }
 </script>
@@ -21,40 +39,36 @@ async function changeMapa(uuid) {
     <Body>
       <h1 class="text-light">Mapas</h1>
       <hr class="border border-danger opacity-100" />
-      <div class="row mb-3">
-        <div class="col-5">
-          <div
-            class="btn-group-vertical w-100 bg-dark rounded-2"
-            role="group"
-            aria-label="Vertical radio toggle button group"
+      <div class="row pb-3">
+        <div class="col-4">
+          <Swiper
+            class="h-100 bg-opacity-25 bg-dark rounded-5"
+            :slides-per-view="5"
+            :initial-slide="2"
+            :direction="'vertical'"
+            :centered-slides="true"
+            :pagination="{
+              clickable: true,
+            }"
+            @slide-change="changeMapa()"
           >
-            <div
+            <SwiperSlide
+              class="h-20 d-flex justify-center justify-content-center align-items-center opacity-100"
               v-for="mapa in mapas.data.filter(
                 (mapa) => !mapasFiltrar.includes(mapa.displayName)
               )"
               :key="mapa"
-              class="btn-group w-100"
-              role="group"
+              :data-uuid="mapa.uuid"
             >
-              <input
-                type="radio"
-                class="btn-check hover"
-                name="vbtn-radio"
-                :id="'vbtn-radio-' + mapa.uuid"
-                autocomplete="off"
-                width="100"
-                @click="changeMapa(mapa.uuid)"
-              />
-              <label
-                class="btn btn-outline-danger w-100 hover"
-                :for="'vbtn-radio-' + mapa.uuid"
-              >
-                {{ mapa.displayName }}
-              </label>
-            </div>
-          </div>
+              <div>
+                <h1 class="text-light anton-font">
+                  {{ mapa.displayName }}
+                </h1>
+              </div>
+            </SwiperSlide>
+          </Swiper>
         </div>
-        <div class="col-7" v-if="mapaElegido">
+        <div class="col-8" v-if="mapaElegido">
           <div class="card">
             <NuxtImg
               placeholder
@@ -72,3 +86,13 @@ async function changeMapa(uuid) {
     </Body>
   </div>
 </template>
+
+<style>
+.swiper-slide-active h1 {
+  color: rgba(var(--bs-danger-rgb), var(--bs-text-opacity)) !important;
+}
+
+.h-20 {
+  height: 20% !important;
+}
+</style>

@@ -15,12 +15,14 @@
     "@nuxtjs/google-fonts": "^3.0.2",
     "@nuxtjs/web-vitals": "^0.2.6",
     "nuxt": "^3.8.1",
+    "nuxt-swiper": "^1.2.2",
     "vue": "^3.3.8",
     "vue-router": "^4.2.5"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.2",
-    "sharp": "^0.32.6"
+    "sharp": "^0.32.6",
+    "web-vitals": "^3.5.0"
   }
 }
