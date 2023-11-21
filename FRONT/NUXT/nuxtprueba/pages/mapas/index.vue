@@ -45,7 +45,6 @@ async function changeMapaUuid() {
         <div class="col-4">
           <Swiper
             class="h-100 bg-opacity-25 bg-dark rounded-5"
-            :modules="[SwiperEffectCreative]"
             :slides-per-view="10"
             :initial-slide="0"
             :direction="'vertical'"
@@ -55,7 +54,6 @@ async function changeMapaUuid() {
             }"
             :slide-to-clicked-slide="true"
             @slide-change="changeMapa()"
-            @slider-move="changeMapa()"
           >
             <SwiperSlide
               class="h-10 d-flex justify-content-center align-items-center opacity-100"
