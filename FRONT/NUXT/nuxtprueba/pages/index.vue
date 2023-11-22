@@ -14,7 +14,6 @@ const { data: agentes } = await useFetch(Global.urlApi + "agents", {
     </Head>
     <Body>
       <NuxtImg src="/images/valorant.png" class="w-50 d-block mx-auto" />
-      <hr class="border border-danger opacity-100" />
       <div class="container text-center mt-3" v-if="agentes">
         <div class="row">
           <div class="col-2" v-for="agente in agentes.data" :key="agente">
